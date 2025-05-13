@@ -1,1 +1,25 @@
-{}
+{
+    "hosting": {
+      "site": "adamsbombcomedy",
+      "public": "dist/browser",
+      "ignore": ["firebase.json", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "/api/**",
+          "destination": "/api/**"
+        },
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    "apphosting": {
+      "backends": [
+        {
+          "name": "adams-bomb-ssr",
+          "entryPoint": "./src/server.ts"
+        }
+      ]
+    }
+  }

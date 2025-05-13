@@ -1,0 +1,137 @@
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  height: fit-content;
+}
+
+.site-title {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: inherit; /* To ensure the background color is inherited from the toolbar */
+  align-items: center;
+  justify-content: center;
+}
+
+.title-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: white; /* To ensure the text color is inherited from the toolbar */
+  background-color: inherit; /* To ensure the background color is inherited from the toolbar */
+  text-decoration: none; /* Remove underline from the link */
+  font-family: 'Raleway", Arial, sans-serif'; // lol.
+}
+
+.site-title-text-container { 
+  font-size: 24px;
+  font-weight: 600;
+  color: white; /* To ensure the text color is inherited from the toolbar */
+  background-color: inherit; /* To ensure the background color is inherited from the toolbar */
+  text-decoration: none; /* Remove underline from the link */
+  align-items:flex-end;
+  justify-content:end;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  width: 100%;
+  max-width: 100px;
+  height: auto;
+  margin-top: .2%;
+  margin-bottom: .2%;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  background-color: inherit;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+a {
+  background-color: inherit;
+  text-decoration: none;
+}
+.link-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+@media screen and (max-width: 768px) {
+  .mat-toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .site-title {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  mat-menu-item {
+    font-size: 16px;
+  }
+
+  .logoContainer {
+    margin-right: 0;
+    min-height: 50px;
+  }
+
+  mat-menu-item {
+    display: flex;
+    flex-direction: row;
+  }
+  .link-container {
+    margin: 0% 0% 0% 0%;
+  }
+
+  @media screen and (max-width: 480px) {
+    .mat-toolbar {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+    .title-text {
+      display: none;
+    }
+
+    .site-title {
+      display: hidden;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+
+    .logoContainer {
+      margin-right: 0;
+      min-height: 50px;
+    }
+
+    mat-menu-item {
+      display: flex;
+      flex-direction: row;
+    }
+    .link-container {
+      margin: 0% 0% 0% 0%;
+    }
+    
+  }
+}

@@ -5,11 +5,11 @@ outputDirectory: dist/adams_bomb_ssr/browser
 server: 
   entrypoint: dist/adams_bomb_ssr/server/server.mjs
 runConfig:
-  minInstances: 0
-  # maxInstances: 100
-  # concurrency: 80
-  # cpu: 1
-  # memoryMiB: 512
+  minInstances: 2
+  maxInstances: 100
+  concurrency: 100
+  cpu: 2
+  memoryMiB: 1024
 
 # Environment variables and secrets.
 env:
@@ -23,5 +23,27 @@ env:
 
   # Grant access to secrets in Cloud Secret Manager.
   # See https://firebase.google.com/docs/app-hosting/configure#secret-parameters
-  # - variable: MY_SECRET
-  #   secret: mySecretRef
+  - variable: DATO_CMS_TOKEN
+    secret:
+      name: DATO_CMS_TOKEN
+      version: latest
+    availibilty:
+      - BUILD
+      - RUNTIME
+    secretManager: true
+  - variable: GOOGLE_MAPS_API_KEY
+    secret:
+      name: GOOGLE_MAPS_API_KEY
+      version: latest
+    availibilty:
+      - BUILD
+      - RUNTIME
+    secretManager: true
+  - variable: GOOGLE_MAPS_API_ID
+    secret:
+      name: GOOGLE_MAPS_API_ID
+      version: latest
+    availibilty:
+      - BUILD
+      - RUNTIME
+    secretManager: true

@@ -1,0 +1,51 @@
+<!-- Show Card -->
+<mat-card class="mat-card" *ngIf="typeData === 'shows'">
+  <a [routerLink]="['/show/', data.id]" [state]="show" class="link-wrapper">
+    <mat-card-header class="mat-card-header">
+      <mat-card-title class="mat-card-title">{{ data.showName }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="content-container">
+      <div class="image-container">
+        <img class="content-image" src="{{data.showFlier.url}}" alt="{{ data.showName }} Flier">
+      </div>
+      <div class="text-container">
+        <p *ngIf="data.venueAddress"><strong>Location:</strong> {{ data.venueAddress }}</p>
+        <p *ngIf="data.showDate"><strong>Date:</strong> {{ data.showDate | date }}</p>
+        <p *ngIf="data.showDate"><strong>Time:</strong> {{ data.showDate | date:'shortTime' }}</p>
+      </div>
+    </mat-card-content>
+  </a>
+</mat-card>
+<!-- Clip Card -->
+<mat-card *ngIf="typeData === 'clips' && clip" class="mat-card-comic">
+  <mat-card-header class="mat-card-header-comic">
+    <mat-card-title class="mat-card-title"> {{clip.name}} </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <iframe class="iframe" width="560" height="315" [src]="safeClipUrl" title="YouTube video player" frameborder="1"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+    <div class="text-container">
+      <p> {{ clip.description }} </p>
+      <h3> {{ clip.featuredComic?.firstName }} {{ clip.featuredComic?.lastName }} </h3>
+    </div>
+  </mat-card-content>
+</mat-card>
+<!-- Comic Card -->
+<div class="comic-wrapper">
+  <mat-card class="mat-card-comic" *ngIf="typeData === 'comics'" [ngClass]="{
+      'flex-row': comic?.role === 'Founder', 
+      'flex-column': comic?.role !== 'Founder'}">
+    <a [routerLink]="['/comic/', data.id]" [state]="comic">
+      <mat-card-header class="mat-card-header">
+        <mat-card-title class="mat-card-title">{{ data.firstName }} {{ data.lastName }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="comic-content-container">
+        <img class='content-image' id="bio-headshot" *ngIf="comic?.headshot" [src]="comic?.headshot?.url">
+        <div class="text-container">
+          <p class="text"> {{ data.bio }} </p>
+        </div>
+      </mat-card-content>
+    </a>
+  </mat-card>
+</div>

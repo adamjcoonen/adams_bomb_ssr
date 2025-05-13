@@ -1,0 +1,37 @@
+<div mat-card class="show-details-container">
+    <div class="flier-container">
+        <img class="show-flier" src="{{show.showFlier.url}}">
+    </div>
+    <div mat-card class="show-content">
+        <h1 class="show-detail">{{show.showName}}</h1>
+        <mat-card class="show-detail">
+            <h2 class="detail-header"> Date:</h2>
+            <mat-card-content>
+                {{show.showDate | date}}
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="show-detail">
+            <h2 class="detail-header">Description:</h2>
+            <mat-card-content>
+                <div
+                 [innerHtml]="showDescription">
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="show-detail">
+            <h2 class="detail-header">Location:</h2>
+            <mat-card-content>
+                <p>{{show.venueName}}</p>
+                <p>{{show.venueAddress}}</p>
+                <!-- <google-map height="300px" width="100%" [center]="center" [zoom]="zoom" id="33b47436f83af294892d5757">
+                    <map-advanced-marker [position]="center"></map-advanced-marker>
+                </google-map> -->
+                <div id="map" style="height: 400px; width: 100%;">
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <!-- event bright should go here conditionally -->
+        <!-- <p class="show-detail">{{show.ticketLink.value.document.children[0].children[0].value}} -->
+        <button mat-button class="checkout-button" (click)="redirectToCheckout()">Checkout</button>
+    </div>
+</div>
