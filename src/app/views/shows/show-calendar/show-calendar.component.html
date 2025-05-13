@@ -1,0 +1,44 @@
+<div class="cal-container">
+    <div class="cal-header">
+      <button (click)="setView(CalendarView.Month)">Month</button>
+      <button (click)="setView(CalendarView.Week)">Week</button>
+    </div>
+  
+    <!-- <div [ngSwitch]="view">
+      <mwl-calendar-month-view
+        *ngSwitchCase="CalendarView.Month"
+        [viewDate]="viewDate"
+        [events]="events"
+        (dayClicked)="closeOpenMonthViewDay()"
+        [cellTemplate]="monthCellTemplate">>
+      </mwl-calendar-month-view>
+  
+      <mwl-calendar-week-view
+        *ngSwitchCase="CalendarView.Week"
+        [viewDate]="viewDate"
+        [events]="events">
+      </mwl-calendar-week-view>
+    </div> -->
+      <!-- Template for displaying events in the month view -->
+  <ng-template #monthCellTemplate let-day="day">
+    <div class="cal-day">
+      <div class="cal-day-number">{{ day.date | date: 'd' }}</div>
+      <div class="cal-events">
+        <div *ngFor="let event of day.events" class="cal-event">
+          {{ event.title }} - {{ event.start | date: 'shortTime' }}
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Template for displaying events in the week view -->
+  <ng-template #weekEventTemplate let-event="event">
+    <div class="cal-week-event">
+      {{ event.title }}
+    </div>
+  </ng-template>
+  </div>
+
+
+
+

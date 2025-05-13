@@ -1,0 +1,33 @@
+.calendar-card {
+    width: 100vw;
+    background-color: black;
+}
+
+.page-title {
+    color: white;
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom:5px;
+    //padding: 1rem;
+    text-align: center;
+
+}
+
+.slide-toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.toggle-label {
+    margin:10px;
+}
+
+.text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: white !important;
+}

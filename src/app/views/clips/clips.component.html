@@ -1,0 +1,10 @@
+<mat-card class="main-container">
+    <mat-card-header>
+        <h1 class="header">
+            What You're Getting
+        </h1>
+    </mat-card-header>
+    <div *ngIf="clipsList.values">
+        <app-content-piece *ngFor="let clip of clipsList" [data]="clip" [typeData]="'clips'"></app-content-piece>
+    </div>
+</mat-card>

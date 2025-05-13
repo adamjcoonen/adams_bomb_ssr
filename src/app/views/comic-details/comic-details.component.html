@@ -1,0 +1,53 @@
+<h1 class="title">{{comic.firstName}} {{comic.lastName}}</h1>
+<div class="content-container">
+    <div class="headshot-container">
+        <img class="bio-headshot" src="{{comic.headshot.url}}" alt="Headshot">
+    </div>
+    <div class="accordion-container">
+
+        <mat-accordion class="mat-accordion">
+            <mat-expansion-panel class="expansion-panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Bio
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>{{comic.bio}}</p>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="expansion-panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Credits
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>{{comic.credits.value.document.children[0].children[0].value}}</p>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="expansion-panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Clips
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div *ngIf="safeClipList && safeClipList.length > 0 else no_clips">
+                    <div class="clip-list" *ngFor="let clip of safeClipList">
+                        <iframe class="iframe" width="320" height="180" [src]="clip" title="YouTube video player"
+                            frameborder="1"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                        <br>
+                    </div>
+                    <mat-divider [inset]="true" style="background-color: black; justify-content: left;"></mat-divider>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <!-- <p>Position: {{comic.position}}</p>
+    <p>Role: {{comic.role}}</p>
+    <p>Bio: {{comic.bio}}</p>
+    <p>Featured In:</p>
+    <p> Instagram {{ comic.instaLink }}</p> -->
+</div>
+
+<ng-template #no_clips>Keepin' it real for now - no clips yet.</ng-template>

@@ -1,0 +1,35 @@
+env:
+  # Configure environment variables.
+  # See https://firebase.google.com/docs/app-hosting/configure#user-defined-environment
+  - variable: MESSAGE
+    value: Hello world!
+  #   availability:
+  #     - BUILD
+  #     - RUNTIME
+
+  # Grant access to secrets in Cloud Secret Manager.
+  # See https://firebase.google.com/docs/app-hosting/configure#secret-parameters
+  - variable: DATO_CMS_TOKEN
+    secret:
+      name: DATO_CMS_TOKEN
+      version: latest
+    availibilty:
+      - BUILD
+      - RUNTIME
+    secretManager: true
+  - variable: GOOGLE_MAPS_API_KEY
+    secret:
+      name: GOOGLE_MAPS_API_KEY
+      version: latest
+    availibilty:
+      - BUILD
+      - RUNTIME
+    secretManager: true
+  - variable: GOOGLE_MAPS_API_ID
+    secret:
+      name: GOOGLE_MAPS_API_ID
+      version: latest
+    availibilty:
+      - BUILD
+      - RUNTIME
+    secretManager: true

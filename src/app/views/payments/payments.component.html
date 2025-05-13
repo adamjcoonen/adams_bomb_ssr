@@ -1,0 +1,37 @@
+<div class="show-card" *ngIf="show">
+  <h1>{{show.showName}}</h1>
+  <mat-card class="show-container">
+
+    <mat-card class="flier-container">
+      <img class="flier-image" src="{{show.showFlier?.url}}">
+    </mat-card>
+    <mat-card class="show-details-container">
+      <!-- <p> {{show.showDate | date}}</p> -->
+      <p>{{show.showDescription?.value.document.children[0].children[0].value}}</p>
+      <p>Price per ticket: $5</p>
+    </mat-card>
+  </mat-card>
+
+</div>
+<div class="payment-container">
+  <div class="payment-form-credit">
+    <!-- <form (submit)="handlePayment()"> -->
+      <div class="form-row">
+        <label for="card-element">
+          Credit or Debit Card
+        </label>
+        <div id="card-element" class="stripe-card-element">
+          <!-- A Stripe Element will be inserted here. -->
+        </div>
+        <!-- Used to display form errors -->
+        <div id="card-errors" role="alert"></div>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Payment</button>
+    <!-- </form> -->
+    <!-- <div class="payment-form-2">
+        <form (submit)="handlePayment()">
+          <button type="submit" class="submit-btn">Submit Payment</button>
+        </form>
+    </div> -->
+  </div>

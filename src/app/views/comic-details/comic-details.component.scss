@@ -1,0 +1,185 @@
+.content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 3px;
+  padding: 5% 5% 5% 5%;
+  width: 100vw;
+}
+
+.bio-headshot {
+  flex: 1;
+  width: 100%;
+  max-width: 350px;
+  height: 100%;
+  object-fit: contain;
+}
+
+.headshot-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.accordion-container {
+  flex: 2;
+  width: 100vw;
+  max-width: 800px;
+  margin: 10px;
+  justify-content: center;
+  text-align: center;
+}
+
+.mat-accordion {
+  width: 100vw;
+  max-width: 500px;
+  margin: 10px;
+  justify-content: center;
+  text-align: center;
+
+}
+
+.expansion-panel {
+  width: 100%;
+  max-width: 800px;
+  margin: 10px;
+  justify-content: center;
+  text-align: center;
+  background-color: #ff9800;
+  p {
+    text-align: left;
+  }
+}
+
+.title {
+  text-align: center;
+}
+
+.clip-list {
+  padding-bottom: 3%;
+}
+
+/* For extra small devices (phones, less than 600px) */
+@media only screen and (max-width: 600px) {
+  .content-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 90%;
+  }
+
+  .bio-headshot {
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+
+  .accordion-container {
+    width: 90%;
+    max-width: 100%;
+    margin: 10px;
+  }
+
+  .mat-accordion {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .expansion-panel {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .iframe {
+    width: 100%;
+    height: auto;
+  }
+
+  .title {
+    font-size: 1.5em;
+    margin: 35px 0;
+  }
+}
+
+/* For small devices (tablets, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 90%;
+  }
+
+  .bio-headshot {
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .accordion-container {
+    width: 85%;
+    max-width: 600px;
+  }
+
+  .mat-accordion {
+    width: 85%;
+    max-width: 600px;
+  }
+
+  .expansion-panel {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .iframe {
+    width: 320px;
+    height: 180px;
+  }
+
+  .title {
+    font-size: 1.8em;
+    margin: 35px 0;
+  }
+}
+
+/* For medium devices (desktops, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .content-container {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 5%;
+    width: 90%;
+  }
+
+  .bio-headshot {
+    max-width: 350px;
+    height: auto;
+  }
+
+  .accordion-container {
+    width: 85%;
+    max-width: 800px;
+  }
+
+  .mat-accordion {
+    width: 80%;
+    max-width: 800px;
+  }
+
+  .expansion-panel {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .iframe {
+    width: 320px;
+    height: 180px;
+  }
+
+  .title {
+    font-size: 2em;
+    margin: 20px 0;
+  }
+}

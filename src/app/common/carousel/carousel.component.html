@@ -1,0 +1,73 @@
+
+<div class="carousel" *ngIf="this.slides$.value">
+<div class="carousel-content">
+
+  <button mat-button class="control prev" (click)="nextSlide()">
+    <span class="arrow left"></span>
+  </button>
+  <ng-container class="ng-container" *ngFor="let slide of slides; let i = index" >
+    <div class="carousel-item" *ngIf="slide.mediaLink?.showFlier?.url && i === currentSlide" @carouselAnimation>
+      <div class="slide-content">
+        <div class="slide-title">
+          <h6>{{slide.title}}</h6>
+        </div>
+        <div class="carousel-caption">
+          <h5>{{slide.mediaLink.showName}}</h5>
+          <!-- <p class="bio">{{slide.mediaLink.showDescription.value.document.children[0].children[0].value}}</p> -->
+        </div>
+      </div>  
+      <div class="slide-media">
+            <img [src]="slide.mediaLink.showFlier.url" alt="slide.title">
+          </div>
+        </div>
+    <div class="carousel-item" *ngIf="slide.mediaLink.youtubeurl && i === currentSlide" @carouselAnimation>
+      <div class="slide-content">
+        <div class='slide-title'>
+        </div>
+        <div class="carousel-caption">
+          <h5>{{slide.mediaLink.name}}</h5>
+        </div>
+      </div>
+      <div class="slide-media">
+        <iframe
+        #youtubeIframe
+        [src]="getYoutubeEmbedUrl(slide.mediaLink.youtubeurl, i) | safe"
+        width="auto" height="100%" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
+        allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+    <div class="carousel-item" *ngIf="slide.mediaLink.headshot && i === currentSlide" @carouselAnimation >
+      <div class="slide-content">
+        <div class="slide-title">
+          <h6>{{slide.title}}</h6>
+        </div>
+        <div class="carousel-caption">
+          <h6>{{slide.mediaLink.firstName}} {{slide.mediaLink.lastName}}</h6>
+          <p class="bio">{{slide.mediaLink.bio}}</p>
+        </div>
+      </div>  
+      <div class="slide-media">
+        <img [src]="slide.mediaLink.headshot.url" alt="slide.title">
+      </div>
+    </div>
+    <div class="carousel-item" *ngIf="slide.mediaLink.photo && i === currentSlide" @carouselAnimation >
+      <div class="slide-media">
+        <img class="slide-image" [src]="slide.mediaLink.photo.url" alt="slide.title">
+      </div>
+    </div>
+  </ng-container>
+  <button mat-button class="control next" (click)="previousSlide()">
+    <span class="arrow right"></span>
+  </button>
+</div>
+  <div class="carousel-indicators">
+    <span *ngFor="let slide of slides; let i = index" 
+    class="indicator" 
+    [class.active]="i === currentSlide"
+    (click)="goToSlide(i)">
+  </span>
+</div>
+</div>

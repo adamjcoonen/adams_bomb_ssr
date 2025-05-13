@@ -1,0 +1,18 @@
+<mat-card-title class="founders-title">Founders</mat-card-title>
+<mat-list class="founders-list">
+    <mat-list-item class="founders-comic-card-container" *ngFor="let comic of foundersList; let index = index">
+        <app-content-piece [data]="comic" [typeData]="'comics'" class="founder-content">
+        </app-content-piece>
+    </mat-list-item>
+</mat-list>
+
+<mat-card-title class="mat-card-title">Featured Comics</mat-card-title>
+<mat-list class="comic-list" *ngIf="comics.value">
+    <mat-list-item class="comic-card-container" *ngFor="let comic of comicsList">
+        <br>
+        <mat-divider class="comic-divider"></mat-divider>
+        <app-content-piece class="content-piece" [data]="comic" [typeData]="'comics'">
+        </app-content-piece>
+        <br>
+    </mat-list-item>
+</mat-list>

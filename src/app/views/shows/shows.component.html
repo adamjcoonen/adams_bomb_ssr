@@ -1,0 +1,18 @@
+<div>
+  <h1 class="page-title">Upcoming shows</h1>
+  <div class="slide-toggle-container">
+    <label class="toggle-label">List</label>
+    <mat-slide-toggle [(ngModel)]="isCalendar" (toggleChange)="onToggleChange()"></mat-slide-toggle>
+    <label class="toggle-label">Calendar</label>
+  </div>
+
+  <mat-card class="custom-card" *ngIf="showsList && !isCalendar">
+    <mat-card-content class="content">
+      <app-content-piece *ngFor="let show of showsList" [data]="show" [typeData]="'shows'"></app-content-piece>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="calendar-card" *ngIf="isCalendar">
+    <app-show-calendar [eventsList]="showsList"></app-show-calendar>
+  </mat-card>
+</div>
