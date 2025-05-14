@@ -45,8 +45,8 @@ async function fetchSecretByName(secretName: string): Promise<string | undefined
 
     // build secret manager client
     const secretManager = google.secretmanager({ auth: auth, version: 'v1' });
-    console.log('Project ID:', projectId); // Log the project ID for debugging
-    console.log('Secret Name:', secretName); // Log the secret name for debugging
+    // console.log('Project ID:', projectId); // Log the project ID for debugging
+    // console.log('Secret Name:', secretName); // Log the secret name for debugging
     // fetch the secret value
     const res = await secretManager.projects.secrets.versions.access({
       name: `projects/${projectId}/secrets/${secretName}/versions/latest`, // Use projectId
@@ -88,7 +88,7 @@ app.use(express.json());
 async function getDatoCmsToken(): Promise<string | undefined> {
   // 1. Try local environment variable first (from .env)
   if (process.env['DATO_CMS_TOKEN_LOCAL']) {
-    console.log('Using local DatoCMS token from DATO_CMS_TOKEN_LOCAL environment variable.');
+    // console.log('Using local DatoCMS token from DATO_CMS_TOKEN_LOCAL environment variable.');
     return process.env['DATO_CMS_TOKEN_LOCAL'];
   }
 

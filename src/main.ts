@@ -20,12 +20,6 @@ import { AppComponent } from './app/app.component';
 
 
 // Expose environment variables to the global window object
-(window as any).env = {
-  googleMapsApiKey: environment.googleMapsApiKey,
-};
-
-console.log((window as any).env.googleMapsApiKey);
-console.log((window as any).env.googleMapsApiID);
 
 bootstrapApplication(AppComponent, {
   providers: [
