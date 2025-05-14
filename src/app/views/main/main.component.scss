@@ -23,7 +23,9 @@
     background-color: black;
     display: flex;
     flex-direction: column;
-     overflow: hidden;
+    overflow: hidden;
+    width: 100vw;
+    height: auto;
 }
 
 .left-photo, .right-photo {
@@ -67,26 +69,30 @@
 }
 
 .carousel-container {
-    display: relative;
+    display: flex;
+    justify-content: center;
     position: center;
     height: 100%;
     width: 100%;
     padding: 5px;
-    justify-content: center;
     align-items: center;
     background-color: black;
+    max-height: 600px;
 }
 
 .carousel {
-    position: sticky;
+    position: relative;
     display: flex;
-    height: auto;
-    width: 100%;
-    overflow: cover;
+    height: 50%;
+    width: auto;
+    overflow:visible;
     border-radius: 0.5em;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    margin-bottom: 10%;
+    margin-bottom: 2%;
+    max-height: 600px;
+    min-height: 600px;
 }
 
 .carousel-header {

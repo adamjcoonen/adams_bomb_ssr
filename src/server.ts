@@ -11,7 +11,7 @@ import { google } from 'googleapis';
 import dotenv from 'dotenv';
 
 
-
+console.log('--- SERVER.TS WAS CHANGED AND RESTARTED --- ' + new Date().toISOString());
 // Load environment variables from .env file in development
 if (process.env['NODE_ENV'] !== 'production') {
   const result = dotenv.config();

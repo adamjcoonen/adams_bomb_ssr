@@ -8,6 +8,8 @@ import { MainComponent } from './views/main/main.component';
 import { PaymentsComponent } from './views/payments/payments.component';
 import { ShowsComponent } from './views/shows/shows.component';
 import { ShowDetailsComponent } from './views/show-details/show-details.component';
+import { OpenMicsComponent } from './views/openmics/openmics.component';
+import { PodcastsComponent } from './views/podcasts/podcasts.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,5 +22,7 @@ export const routes: Routes = [
     {path: 'home', component: MainComponent },
     {path: 'auth/callback', component: AuthCallbackViewComponent },
     {path: 'payment/:id', component: PaymentsComponent },
+    {path: 'openmics', component: OpenMicsComponent },
+    {path: 'podcast', component: PodcastsComponent },
     {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];

@@ -16,6 +16,8 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Subject } from 'rxjs';
 import { SafePipe } from '../../pipes/safe.pipe'; // Assuming you have a SafePipe for YouTube URLs
 import { BehaviorSubject } from 'rxjs';
+import { MatIcon } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 // Declare the global YT object for the YouTube IFrame Player API
 declare global {
@@ -43,7 +45,9 @@ declare global {
   ],
   imports: [
     CommonModule,
-    SafePipe
+    SafePipe,
+    // MatIcon
+    RouterModule, 
   ]
 })
 
