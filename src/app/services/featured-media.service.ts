@@ -53,7 +53,18 @@ export class FeaturedMediaService {
             showDate
             showDescription {
               value
+              links
             }
+            ticketLink {
+              value
+              links
+            }
+            showLocation {
+              latitude
+              longitude
+            }
+            venueName
+            venueAddress
           }
           ... on ShowPhotoRecord {
             id

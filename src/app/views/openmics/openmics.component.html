@@ -1,0 +1,39 @@
+<div class="open-mic-page-container">
+  <h1>DMV Area Open Mic</h1>
+  <p class="intro-text">Are you a DMV area comic or just a fan of comedy? Well adams bomb comedy can help you find your next openmic. Check out this list of mics listed by day of the week We even did filters ooooooo!</p>
+
+  <div class="days-list">
+    <div *ngFor="let day of daysOfWeek" class="day-section">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ day }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="mic-list-content" *ngFor="let mic of openMicList ">
+          <mat-card class="mic-item" *ngIf="mic.dayoftheweek[0] === day">
+            <!-- <img class="day-image" [src]="mic.flier.url" alt="{{ day }} image"> -->
+            <div class="mic-details">
+              <strong>Mic Name:</strong> {{mic.title}}<br>
+              <strong>Time:</strong> {{mic.time}}<br>
+              <strong>Venue:</strong> <a href="{{mic.venuewebsite}}" >{{mic.venueName}}</a><br>
+              <a *ngIf="mic.onlinesignup === true" href="{{mic.signupLink}}"><strong>Link Sign Up</strong> {{mic.signupLink}}</a>
+              <strong *ngIf="mic.onlinesignup === false">signup on site</strong> {{mic.address}}<br>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <strong>Details</strong>
+                  </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <p> {{mic.description}}</p>
+                </mat-expansion-panel>
+            </div>
+            <div class="flier-img">
+              <img class="flier-image" [src]="mic.flier.url" alt="{{ day }} image">
+            </div>
+          </mat-card>
+        </div>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>

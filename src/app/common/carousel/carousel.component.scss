@@ -1,42 +1,20 @@
-.carousel-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%; /* Adjust as needed */
-  height: auto; /* Adjust as needed */
-}
-
-.carousel-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  max-width: 500px !important;
-  max-height: 500px !important;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-
-  &.active {
-    opacity: 1;
-  }
-
 
 
   .slide-media {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    max-width: 500px;
-    max-height: 500px;
+    width: auto;
+    height: 90vh;
+    max-width: 100%;
+    max-height: 80%;
     overflow: hidden; /* Prevent overflow */
   }
 
   iframe, img {
-    display: block;
-    width: 75%;
-    height: auto; /* Maintain aspect ratio */
+    // display: block;
+    width: auto;
+    height: 100%; /* Maintain aspect ratio */
   }
 
   .slide-content {
@@ -48,32 +26,80 @@
     padding: 10px;
     max-height: 600px;
   }
+
+/* your-carousel.component.css */
+
+.carousel-wrapper {
+  position: relative; /* Needed for absolute positioning of arrows */
+  width: 100%;
+  overflow: hidden; /* Or however you manage slide overflow */
+  /* Add other carousel wrapper styles as needed */
+  background-color: #f0f0f0; /* Example background, arrows will be dark */
+  padding: 20px 0; /* Example padding */
+  min-height: 200px; /* Example height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.carousel-control {
+.carousel-content {
+  /* Styles for your slidable content area */
+  text-align: center;
+  max-height: 600px;
+  display: flex;
+  height: 100vh;
+  width: auto;
+}
+
+.carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
+  z-index: 10; /* Ensure arrows are above slides */
+
+  background-color: rgba(40, 40, 40, 0.6); /* Dark, slightly transparent background */
+  color: #e0e0e0; /* Light arrow color for contrast with its own dark background */
   border: none;
-  font-size: 2em;
-  color: white;
-  opacity: 0.7;
+  border-radius: 50%; /* Makes it circular */
   cursor: pointer;
-  padding: 10px;
-  z-index: 10;
+  padding: 0; /* Reset padding */
+  width: 44px;  /* Size of the button */
+  height: 44px; /* Size of the button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  opacity: 0.7; /* Slightly transparent when not hovered */
+}
 
-  &.prev {
-    left: 10px;
-  }
+.carousel-arrow:hover,
+.carousel-arrow:focus {
+  background-color: rgba(20, 20, 20, 0.8); /* Darker on hover/focus */
+  color: #ffffff; /* Brighter arrow color on hover/focus */
+  opacity: 1;
+  outline: none; /* Remove default focus outline if custom styling is preferred */
+}
 
-  &.next {
-    right: 10px;
-  }
+/* Optional: Add a subtle focus ring for accessibility if you remove outline */
+.carousel-arrow:focus-visible {
+  box-shadow: 0 0 0 2px Highlight; /* Or your preferred focus color */
+  /* For Firefox, you might need: box-shadow: 0 0 0 2px -moz-mac-focusring; */
+  /* Or use a custom outline: outline: 2px solid var(--your-focus-color); outline-offset: 2px; */
+}
 
-  &:hover {
-    opacity: 1;
-  }
+
+.prev-arrow {
+  left: 15px; /* Adjust positioning as needed */
+}
+
+.next-arrow {
+  right: 15px; /* Adjust positioning as needed */
+}
+
+.arrow-icon {
+  width: 24px;  /* Size of the SVG icon itself */
+  height: 24px; /* Size of the SVG icon itself */
+  stroke-width: 2.5; /* Can also be controlled here if not set in SVG */
 }
 
 .carousel-indicators {
@@ -84,8 +110,9 @@
   display: flex;
   gap: 5px;
   z-index: 10;
+  color: white;
 
-  button {
+  .indicator {
     background: rgba(0, 0, 0, 0.5);
     border: none;
     border-radius: 50%;
@@ -99,13 +126,14 @@
       opacity: 1;
     }
   }
+}
 
   .carousel-item {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: auto;
-    max-height: 500px;
+    width: auto;
+    height: 100%;
+    // max-height: 500px;
   }
-}
