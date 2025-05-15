@@ -10,6 +10,7 @@ import axios from 'axios';
 import { google } from 'googleapis';
 import dotenv from 'dotenv';
 
+const googleApiKey = process.env['GOOGLE_MAPS_API_KEY'];
 
 console.log('--- SERVER.TS WAS CHANGED AND RESTARTED --- ' + new Date().toISOString());
 // Load environment variables from .env file in development

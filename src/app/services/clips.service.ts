@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { BehaviorSubject, throwError } from 'rxjs';
 // import { ClipRecord } from 'src/generated/graphql';
 import { catchError, map, } from 'rxjs/operators';
-import { environment } from '../environments/environment';
 
 
   @Injectable({

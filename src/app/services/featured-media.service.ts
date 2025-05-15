@@ -1,7 +1,6 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, map, tap, catchError, throwError } from 'rxjs';
-import { environment } from '../environments/environment';
 import { isPlatformServer } from '@angular/common';
 
 @Injectable({

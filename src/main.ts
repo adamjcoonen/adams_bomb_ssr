@@ -5,7 +5,6 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { importProvidersFrom }    from '@angular/core';
 import { routes } from './app/app.routes';
-import { environment } from './app/environments/environment';
 
 // 3rd-party “forRoot” / ModuleWithProviders calls
 // import { OAuthModule }  from 'angular-oauth2-oidc';

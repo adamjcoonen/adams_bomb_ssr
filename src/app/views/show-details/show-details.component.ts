@@ -5,7 +5,6 @@ import { CheckoutService } from '../../services/checkout.service';
 import { MatCardModule } from '@angular/material/card';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { environment } from '../../environments/environment';
 import { render } from 'datocms-structured-text-to-html-string';
 
 
