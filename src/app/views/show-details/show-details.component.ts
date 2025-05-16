@@ -8,6 +8,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { render } from 'datocms-structured-text-to-html-string';
 
 
+
 @Component({
   selector: 'app-show-details',
   templateUrl: './show-details.component.html',
@@ -44,7 +45,7 @@ export class ShowDetailsComponent implements OnInit, AfterViewInit{
     this.map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
       center: this.center,
       zoom: 18,
-      mapId: environment.googleMapsApiId,
+      mapId: process.env['GOOGLE_MAPS_API_KEY'],
       streetViewControl: false,
     });
     console.log(this.map, 'map');

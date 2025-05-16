@@ -6,7 +6,7 @@ require('dotenv').config(); // If you use a .env file for local development outs
 const targetPathProd = path.join(__dirname, '../src/environments/environment.prod.ts');
 const targetPathDev = path.join(__dirname, '../src/environments/environment.ts');
 
-const googleMapsApiKey = process.env['Maps_API_KEY']; // This will be populated by App Hosting
+const googleMapsApiKey = process.env['google-maps-api-key']; // This will be populated by App Hosting
 
 if (!googleMapsApiKey) {
   console.warn(

@@ -27,23 +27,23 @@ env:
     secret:
       name: DATO_CMS_TOKEN
       version: latest
-    availibilty:
+    availability:
       - BUILD
       - RUNTIME
     secretManager: true
-  - variable: GOOGLE_MAPS_API_KEY
+  - variable: google-maps-api-key
     secret:
-      name: GOOGLE_MAPS_API_KEY
+      name: google-maps-api-key
       version: latest
-    availibilty:
+    availability:
       - BUILD
       - RUNTIME
     secretManager: true
-  - variable: GOOGLE_MAPS_API_ID
+  - variable: google-maps-api-id
     secret:
-      name: GOOGLE_MAPS_API_ID
+      name: google-maps-api-id
       version: latest
-    availibilty:
+    availability:
       - BUILD
       - RUNTIME
     secretManager: true
