@@ -11,7 +11,7 @@ const googleMapsApiId = process.env['google-maps-api-id']; // This will be popul
 
 if (!googleMapsApiKey) {
   console.warn(
-    'Warning: Maps_API_KEY is not defined in environment variables. ' +
+    // 'Warning: Maps_API_KEY is not defined in environment variables. ' +
     'Using a placeholder. This will likely fail for actual map loads.'
   );
 }
