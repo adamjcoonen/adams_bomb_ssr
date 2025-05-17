@@ -9,7 +9,6 @@ runConfig:
   concurrency: 100
   cpu: 2
   memoryMiB: 1024
-  serviceAccount: adams-ssr-runtime-sa@adamsbombcomedy.iam.gserviceaccount.com
 env:
   - variable: MESSAGE
     value: Hello world!
