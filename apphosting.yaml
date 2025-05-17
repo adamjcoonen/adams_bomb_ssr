@@ -1,5 +1,4 @@
-# Settings for Backend (on Cloud Run).
-# See https://firebase.google.com/docs/app-hosting/configure#cloud-run
+# apphosting.yaml
 framework: angular
 outputDirectory: dist/adams_bomb_ssr/browser
 server: 
@@ -11,22 +10,21 @@ runConfig:
   cpu: 2
   memoryMiB: 1024
   serviceAccount: adams-ssr-runtime-sa@adamsbombcomedy.iam.gserviceaccount.com
-
-
-# Environment variables and secrets.
 env:
+  - variable: MESSAGE
+    value: Hello world!
   - variable: DATO_CMS_TOKEN
-    secret: DATO_CMS_TOKEN # This MUST be the ID/name of your secret in Secret Manager
+    secret: DATO_CMS_TOKEN 
     availability:
       - BUILD
       - RUNTIME
-  - variable: google-maps-api-key # Ensure this 'variable' name is what set-env.js uses
-    secret: google-maps-api-key # This MUST be the ID/name of your secret in Secret Manager
+  - variable: google-maps-api-key 
+    secret: google-maps-api-key 
     availability:
       - BUILD
       - RUNTIME
   - variable: google-maps-api-id
-    secret: google-maps-api-id # This MUST be the ID/name of your secret in Secret Manager
+    secret: google-maps-api-id 
     availability:
       - BUILD
       - RUNTIME
