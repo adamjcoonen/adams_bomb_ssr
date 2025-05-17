@@ -10,6 +10,8 @@ runConfig:
   concurrency: 100
   cpu: 2
   memoryMiB: 1024
+  serviceAccount: firebase-app-hosting-compute@adamsbombcomedy.iam.gserviceaccount.com?uid=109359030416095198023
+
 
 # Environment variables and secrets.
 env:
