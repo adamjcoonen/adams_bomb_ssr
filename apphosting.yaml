@@ -22,13 +22,13 @@ env:
     availability:
       - BUILD
       - RUNTIME
-  - variable: Maps_API_KEY # Ensure this 'variable' name is what set-env.js uses
-    secret: Maps_API_KEY # This MUST be the ID/name of your secret in Secret Manager
+  - variable: google-maps-api-key # Ensure this 'variable' name is what set-env.js uses
+    secret: google-maps-api-key # This MUST be the ID/name of your secret in Secret Manager
     availability:
       - BUILD
       - RUNTIME
-  - variable: Maps_API_ID
-    secret: Maps_API_ID # This MUST be the ID/name of your secret in Secret Manager
+  - variable: google-maps-api-id
+    secret: google-maps-api-id # This MUST be the ID/name of your secret in Secret Manager
     availability:
       - BUILD
       - RUNTIME

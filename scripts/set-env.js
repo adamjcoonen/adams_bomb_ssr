@@ -7,6 +7,7 @@ const targetPathProd = path.join(__dirname, '../src/environments/environment.pro
 const targetPathDev = path.join(__dirname, '../src/environments/environment.ts');
 
 const googleMapsApiKey = process.env['google-maps-api-key']; // This will be populated by App Hosting
+const googleMapsApiId = process.env['google-maps-api-id']; // This will be populated by App Hosting
 
 if (!googleMapsApiKey) {
   console.warn(
@@ -18,7 +19,8 @@ if (!googleMapsApiKey) {
 const envConfigFileProd = `
 export const environment = {
   production: true,
-  googleMapsApiKey: "${googleMapsApiKey || 'YOUR_FALLBACK_OR_EMPTY_KEY_FOR_LOCAL_DEV'}"
+  googleMapsApiKey: "${googleMapsApiKey || 'YOUR_FALLBACK_OR_EMPTY_KEY_FOR_LOCAL_DEV'}",
+  googleMapsApiKey: "${googleMapsApiId || 'YOUR_FALLBACK_OR_EMPTY_KEY_FOR_LOCAL_DEV'}"
 };
 `;
 
@@ -26,6 +28,7 @@ const envConfigFileDev = `
 export const environment = {
   production: false,
   googleMapsApiKey: "${googleMapsApiKey || 'YOUR_FALLBACK_OR_EMPTY_KEY_FOR_LOCAL_DEV'}"
+  googleMapsApiKey: "${googleMapsApiId || 'YOUR_FALLBACK_OR_EMPTY_KEY_FOR_LOCAL_DEV'}"
 };
 `;
 
