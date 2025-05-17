@@ -27,7 +27,7 @@ export const environment = {
 const envConfigFileDev = `
 export const environment = {
   production: false,
-  googleMapsApiKey: "${googleMapsApiKey || 'YOUR_FALLBACK_OR_EMPTY_KEY_FOR_LOCAL_DEV'}"
+  googleMapsApiKey: "${googleMapsApiKey || 'YOUR_FALLBACK_OR_EMPTY_KEY_FOR_LOCAL_DEV'}",
   googleMapsApiKey: "${googleMapsApiId || 'YOUR_FALLBACK_OR_EMPTY_KEY_FOR_LOCAL_DEV'}"
 };
 `;

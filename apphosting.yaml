@@ -15,8 +15,8 @@ runConfig:
 
 # Environment variables and secrets.
 env:
-  - variable: MESSAGE
-    value: Hello world!
+  - variable: NODE_ENV
+    value: production
   - variable: DATO_CMS_TOKEN
     secret: DATO_CMS_TOKEN # This MUST be the ID/name of your secret in Secret Manager
     availability:
