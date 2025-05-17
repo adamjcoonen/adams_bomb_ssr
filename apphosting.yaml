@@ -12,6 +12,7 @@ runConfig:
   memoryMiB: 1024
   serviceAccount: adams-ssr-runtime-sa@adamsbombcomedy.iam.gserviceaccount.com
 
+
 # Environment variables and secrets.
 env:
   # Configure environment variables.
