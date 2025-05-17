@@ -109,7 +109,7 @@ app.post('/api/datocms/', async (req, res) => {
   try {
     datoCmsToken = await getDatoCmsToken();
     if (!datoCmsToken) {
-      console.error('DatoCMS token is undefined after attempting to fetch it.');
+      // console.error('DatoCMS token is undefined after attempting to fetch it.');
       return res.status(500).json({ error: 'Failed to obtain DatoCMS token.' });
     }
   } catch (error) {
