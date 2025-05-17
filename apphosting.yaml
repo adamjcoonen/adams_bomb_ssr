@@ -22,8 +22,8 @@ env:
     availability:
       - BUILD
       - RUNTIME
-  - variable: google-maps-api-id
-    secret: google-maps-api-id 
+  - variable: google-maps-map-id
+    secret: google-maps-map-id 
     availability:
       - BUILD
       - RUNTIME

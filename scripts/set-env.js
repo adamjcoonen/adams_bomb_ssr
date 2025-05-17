@@ -7,7 +7,7 @@ const targetPathProd = path.join(__dirname, '../src/environments/environment.pro
 const targetPathDev = path.join(__dirname, '../src/environments/environment.ts');
 
 const googleMapsApiKey = process.env['google-maps-api-key']; // Matches apphosting.yaml variable
-const googleMapsApiId = process.env['google-maps-api-id'];   // Matches apphosting.yaml variable
+const googleMapsApiId = process.env['google-maps-map-id'];   // Matches apphosting.yaml variable
 
 if (!googleMapsApiKey) {
   console.warn(
@@ -17,7 +17,7 @@ if (!googleMapsApiKey) {
 }
 if (!googleMapsApiId) { // Added warning for map ID
   console.warn(
-    'Warning: google-maps-api-id is not defined in environment variables during build. ' +
+    'Warning: google-maps-map-id is not defined in environment variables during build. ' +
     'Using a placeholder.'
   );
 }
