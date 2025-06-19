@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
-import { environment } from 'src/app/environments/environment';
+// import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+// import { environment } from 'src/app/environments/environment';
 
 
 @Injectable({
@@ -20,7 +20,9 @@ export class googleOAuthService {
   //   disablePKCE: false,
   // };
 
-  constructor(private oauthService: OAuthService) {
+  constructor(
+    // private oauthService: OAuthService
+    ) {
     // console.log(window.location.origin + '/auth/callback', 'window.location.origin')
     // this.oauthService.configure(this.authConfig);
     // this.oauthService.loadDiscoveryDocumentAndTryLogin().then(_ => {
@@ -33,9 +35,9 @@ export class googleOAuthService {
     // })
   }
 
-  public login(): void {
-    this.oauthService.initCodeFlow();
-  }
+  // public login(): void {
+  //   this.oauthService.initCodeFlow();
+  // }
 
   // public logOut(): void {
   //   this.oauthService.initCodeFlow();

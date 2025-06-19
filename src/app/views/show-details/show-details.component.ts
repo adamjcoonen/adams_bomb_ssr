@@ -5,8 +5,8 @@ import { CheckoutService } from '../../services/checkout.service';
 import { MatCardModule } from '@angular/material/card';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { environment } from '../../environments/environment';
 import { render } from 'datocms-structured-text-to-html-string';
+
 
 
 @Component({
@@ -45,7 +45,7 @@ export class ShowDetailsComponent implements OnInit, AfterViewInit{
     this.map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
       center: this.center,
       zoom: 18,
-      mapId: environment.googleMapsApiId,
+      mapId: process.env['googleMapsApiKey'],
       streetViewControl: false,
     });
     console.log(this.map, 'map');

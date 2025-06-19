@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 // import { ClipRecord } from 'src/generated/graphql';
 import { catchError, map, } from 'rxjs/operators';
-import { environment } from '../environments/environment';
 
 
   @Injectable({
@@ -26,38 +25,31 @@ import { environment } from '../environments/environment';
       }
     }`;
   
-    private readonly API_ENDPOINT = 'https://us-central1-adamsbombcomedy.cloudfunctions.net/proxyRequestToExternalAPI';
+    private readonly API_ENDPOINT = 'api/datocms/'
   
     constructor(private http: HttpClient) {
-      this.clipsList()
+      this.config = 'featuredComicList'
     }
   
     
-    clipsList(): void {
-
-        const body = {
-         query: this.clipQuery,
-       };
-  
-        const url = `${this.API_ENDPOINT}`
-        this.http.post(url, body).pipe(
-          catchError(this.handleError)
-        ).subscribe((data: any) => {
-          console.log(data, 'data')
-          this.clipListBehaviorSubject.next(data.data.allClips)
-        })
-    }
-  
-    private handleError(error: HttpErrorResponse) {
-      if (error.error instanceof ErrorEvent) {
-        console.error('An error occurred:', error.error.message);
-      } else {
-        console.error(
-          `Backend returned code ${error.status}, ` +
-          `body was: ${error.error}`);
+    clipsList(): Observable<any[]> {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+      const body = {
+        query: this.clipQuery
       }
-      return throwError(
-        'Something bad happened; please try again later.');
+      return this.http.post<any>(this.API_ENDPOINT, body, { headers }).pipe(
+        map((response: any) => {
+          // console.log('Response:', response);
+          return response.data.allClips;
+        }),
+        catchError(this.handleError)
+      ) as any;
     }
-  
+    
+    handleError(error: HttpErrorResponse) {
+      console.error('An error occurred:', error.message);
+      return throwError(() => new Error('Error on http call to datoCMS.'));
+    }
   }

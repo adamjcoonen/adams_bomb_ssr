@@ -1,7 +1,6 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, map, tap, catchError, throwError } from 'rxjs';
-import { environment } from '../environments/environment';
 import { isPlatformServer } from '@angular/common';
 
 @Injectable({
@@ -10,7 +9,6 @@ import { isPlatformServer } from '@angular/common';
 export class FeaturedMediaService {
   // public featuredMediaBehaviorSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   config: any;
-  isServer: boolean;
 
   private readonly API_ENDPOINT = '/api/datocms/'
   query = `query MyQuery {
@@ -79,13 +77,7 @@ export class FeaturedMediaService {
   }`
   constructor(
     private http: HttpClient,
-    @Inject(PLATFORM_ID) private platformId: object
-    ) {
-    this.isServer = isPlatformServer(this.platformId);
-      if(this.isServer) {
-        this.featuredMedia();
-      }
-  }
+    ) {}
 
   featuredMedia(): Observable<any> {
     const headers = new HttpHeaders({

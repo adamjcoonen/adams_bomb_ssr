@@ -10,6 +10,7 @@ import axios from 'axios';
 import { google } from 'googleapis';
 import dotenv from 'dotenv';
 
+const googleApiKey = process.env['GOOGLE_MAPS_API_KEY'];
 
 console.log('--- SERVER.TS WAS CHANGED AND RESTARTED --- ' + new Date().toISOString());
 // Load environment variables from .env file in development
@@ -45,8 +46,8 @@ async function fetchSecretByName(secretName: string): Promise<string | undefined
 
     // build secret manager client
     const secretManager = google.secretmanager({ auth: auth, version: 'v1' });
-    console.log('Project ID:', projectId); // Log the project ID for debugging
-    console.log('Secret Name:', secretName); // Log the secret name for debugging
+    // console.log('Project ID:', projectId); // Log the project ID for debugging
+    // console.log('Secret Name:', secretName); // Log the secret name for debugging
     // fetch the secret value
     const res = await secretManager.projects.secrets.versions.access({
       name: `projects/${projectId}/secrets/${secretName}/versions/latest`, // Use projectId
@@ -87,9 +88,9 @@ app.use(express.json());
 // Helper to get the DatoCMS token
 async function getDatoCmsToken(): Promise<string | undefined> {
   // 1. Try local environment variable first (from .env)
-  if (process.env['DATO_CMS_TOKEN_LOCAL']) {
+  if (process.env['DATO_CMS_TOKEN']) {
     console.log('Using local DatoCMS token from DATO_CMS_TOKEN_LOCAL environment variable.');
-    return process.env['DATO_CMS_TOKEN_LOCAL'];
+    return process.env['DATO_CMS_TOKEN'];
   }
 
   // 2. Fallback to Google Secret Manager (for production or if local isn't set)
@@ -108,7 +109,7 @@ app.post('/api/datocms/', async (req, res) => {
   try {
     datoCmsToken = await getDatoCmsToken();
     if (!datoCmsToken) {
-      console.error('DatoCMS token is undefined after attempting to fetch it.');
+      // console.error('DatoCMS token is undefined after attempting to fetch it.');
       return res.status(500).json({ error: 'Failed to obtain DatoCMS token.' });
     }
   } catch (error) {
@@ -143,14 +144,6 @@ app.post('/api/datocms/', async (req, res) => {
   }
   return res; // Not needed here, res.json() or res.status().json() sends the response.
 });
-
-app.get(
-  '**',
-  express.static(browserDistFolder, { // Serve static files from the browser distribution
-    maxAge: '1y',
-    index: 'index.html' // This is important, but Angular rendering will take precedence for routes
-  }),
-);
 
 
 /**
