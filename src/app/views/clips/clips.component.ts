@@ -14,7 +14,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./clips.component.scss']
 })
 export class ClipsComponent {
-  behaviorSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   clipsList: any[] = [];
 
   constructor(
@@ -22,12 +21,10 @@ export class ClipsComponent {
   ) { }
 
   ngOnInit(): void {
-    this.ClipsService.clipListBehaviorSubject.subscribe((data: any[]) => {
-      if (data.length > 0) {
-        this.behaviorSubject.next(data);
-        if (this.behaviorSubject.getValue() !== null && this.behaviorSubject.getValue() !== undefined) {
-          this.clipsList = this.behaviorSubject.getValue();
-        }
+    this.ClipsService.clipsList().subscribe((data: any[]) => {
+      console.log(data, 'clips data in clips component');
+      if (data && data.length > 0) {
+        this.clipsList = data;
       }
     })
   }

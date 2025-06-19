@@ -8,8 +8,8 @@ import { routes } from './app/app.routes';
 
 // 3rd-party “forRoot” / ModuleWithProviders calls
 // import { OAuthModule }  from 'angular-oauth2-oidc';
-// import { CalendarModule, DateAdapter } from 'angular-calendar';
-// import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { GoogleMapsModule } from '@angular/google-maps';
 // import { StripeModule } from 'stripe-angular';
 import { FormsModule } from '@angular/forms';
@@ -30,7 +30,7 @@ bootstrapApplication(AppComponent, {
     /* Anything that used to be `imports: [ XModule.forRoot() ]` */
     importProvidersFrom(
       // OAuthModule.forRoot(),
-      // CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+      CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
       GoogleMapsModule,
       // StripeModule,
       FormsModule

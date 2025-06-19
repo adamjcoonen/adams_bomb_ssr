@@ -88,9 +88,9 @@ app.use(express.json());
 // Helper to get the DatoCMS token
 async function getDatoCmsToken(): Promise<string | undefined> {
   // 1. Try local environment variable first (from .env)
-  if (process.env['DATO_CMS_TOKEN_LOCAL']) {
-    // console.log('Using local DatoCMS token from DATO_CMS_TOKEN_LOCAL environment variable.');
-    return process.env['DATO_CMS_TOKEN_LOCAL'];
+  if (process.env['DATO_CMS_TOKEN']) {
+    console.log('Using local DatoCMS token from DATO_CMS_TOKEN_LOCAL environment variable.');
+    return process.env['DATO_CMS_TOKEN'];
   }
 
   // 2. Fallback to Google Secret Manager (for production or if local isn't set)
@@ -144,14 +144,6 @@ app.post('/api/datocms/', async (req, res) => {
   }
   return res; // Not needed here, res.json() or res.status().json() sends the response.
 });
-
-app.get(
-  '**',
-  express.static(browserDistFolder, { // Serve static files from the browser distribution
-    maxAge: '1y',
-    index: 'index.html' // This is important, but Angular rendering will take precedence for routes
-  }),
-);
 
 
 /**

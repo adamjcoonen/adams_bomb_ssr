@@ -8,6 +8,7 @@ const targetPathDev = path.join(__dirname, '../src/environments/environment.ts')
 
 const googleMapsApiKey = process.env['google-maps-api-key']; // Matches apphosting.yaml variable
 const googleMapsApiId = process.env['google-maps-map-id'];   // Matches apphosting.yaml variable
+const datoCMSKey = process.env['dato-cms-key']; // Matches apphosting.yaml variable
 
 if (!googleMapsApiKey) {
   console.warn(
@@ -34,7 +35,8 @@ const envConfigFileDev = `
 export const environment = {
   production: false,
   googleMapsApiKey: "${googleMapsApiKey || 'YOUR_FALLBACK_OR_EMPTY_KEY_FOR_LOCAL_DEV'}", // Added comma
-  googleMapsApiId: "${googleMapsApiId || 'YOUR_FALLBACK_OR_EMPTY_ID_FOR_LOCAL_DEV'}"  // Corrected property name from googleMapsApiKey to googleMapsApiId
+  googleMapsApiId: "${googleMapsApiId || 'YOUR_FALLBACK_OR_EMPTY_ID_FOR_LOCAL_DEV'}"  // Corrected property name from googleMapsApiKey to googleMapsApiId,
+  datoCMSKey: "${datoCMSKey || 'YOUR_FALLBACK_OR_EMPTY_KEY_FOR_LOCAL_DEV'}" // Added datoCMSKey
 };
 `;
 

@@ -9,7 +9,6 @@ import { isPlatformServer } from '@angular/common';
 export class FeaturedMediaService {
   // public featuredMediaBehaviorSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   config: any;
-  isServer: boolean;
 
   private readonly API_ENDPOINT = '/api/datocms/'
   query = `query MyQuery {
@@ -78,13 +77,7 @@ export class FeaturedMediaService {
   }`
   constructor(
     private http: HttpClient,
-    @Inject(PLATFORM_ID) private platformId: object
-    ) {
-    this.isServer = isPlatformServer(this.platformId);
-      if(this.isServer) {
-        this.featuredMedia();
-      }
-  }
+    ) {}
 
   featuredMedia(): Observable<any> {
     const headers = new HttpHeaders({

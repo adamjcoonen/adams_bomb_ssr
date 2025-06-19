@@ -1,0 +1,214 @@
+/* open-mics.component.scss */
+
+.open-mic-page-container {
+  background-color: #000000; /* Pure Black background */
+  color: #ffffff; /* White text for overall page */
+  padding: 25px 15px;
+  min-height: 100vh; /* Make the page reach the bottom */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.open-mic-page-container h1 {
+  color: #ffffff; /* White for the main title */
+  text-align: center;
+  font-size: 2.8em;
+  margin-bottom: 0.5em;
+  font-weight: 700;
+  /* Orange accent color (255, 152, 0) for text shadow */
+  text-shadow: 0 0 8px rgba(255, 152, 0, 0.3);
+}
+
+.open-mic-page-container .intro-text {
+  color: #e0e0e0; /* Slightly softer white for intro text */
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 2.5em auto;
+  font-size: 1.1em;
+  line-height: 1.7;
+}
+
+.days-list {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mat-header-title {
+  color: white !important; /* Ensure header titles are white */
+}
+
+.day-section .mat-expansion-panel {
+  background-color: #000000 !important; /* Pure black background for panel */
+  color: #ffffff !important; /* White text for panel content */
+  margin-bottom: 20px !important;
+  border-radius: 8px !important;
+  border: 1px solid #2d2d2d; /* Slightly more visible border for black on black */
+  box-shadow: none; /* Remove black shadow on black background */
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.day-section .mat-expansion-panel:hover {
+  border-color: #ff9800; /* Orange border on hover */
+  /* Orange accent color (255, 152, 0) for box shadow */
+  box-shadow: 0 0 15px rgba(255, 152, 0, 0.4);
+}
+
+/* Expansion Panel Header (the day name bar) */
+.day-section .mat-expansion-panel-header {
+  background-color: #000000 !important; /* Pure black background */
+  color: #e0e0e0 !important; /* Default text in header (if any besides title) */
+  font-size: 1.1em;
+  border-radius: 8px !important; /* Rounded corners */
+  transition: background-color 0.3s ease;
+}
+
+.day-section .mat-expansion-panel-header:hover {
+  background-color: #181818 !important; /* Very subtle dark gray for panel header hover */
+}
+
+.day-section .mat-expansion-panel-header .mat-panel-title {
+  color: #ff9800 !important; /* Day of the week title in orange */
+  font-weight: 600;
+  font-size: 1.3em;
+}
+
+/* Expansion indicator (the arrow) */
+.day-section .mat-expansion-indicator::after {
+  color: #ff9800 !important; /* Orange arrow */
+}
+
+/* When panel is expanded */
+.day-section .mat-expansion-panel.mat-expanded {
+  border-color: #ff9800; /* Keep orange border when expanded */
+  /* Orange accent color (255, 152, 0) for box shadow */
+  box-shadow: 0 0 18px rgba(255, 152, 0, 0.3);
+}
+
+.day-section .mat-expansion-panel.mat-expanded .mat-expansion-panel-header {
+  background-color: #181818 !important; /* Consistent hover/expanded bg */
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom: 1px solid #2d2d2d;
+}
+
+/* Content area of the panel (where mic details are) */
+.day-section .mat-expansion-panel .mat-expansion-panel-body {
+  padding: 20px 25px !important;
+  background-color: #000000; /* Pure black content area */
+  color: #e0e0e0; /* Soft white for mic details text */
+}
+
+.mic-list-content {
+  line-height: 1.6;
+}
+
+.mic-item {
+  background-color: #000000;
+  padding: 12px 0;
+  border-bottom: 1px dashed #2d2d2d;
+  color: #e0e0e0;
+  display: flex; /* Enable flexbox for side-by-side layout */
+  flex-direction: row; /* Arrange children in a row */
+  gap: 20px; /* Add space between flier and details */
+  align-items: flex-start; /* Align items to the top */
+}
+
+.mic-item:last-child {
+  border-bottom: none;
+}
+
+.mic-item strong {
+  color: #ffffff; /* Make labels like "Mic Name:" white */
+  font-weight: 600;
+}
+
+.mic-details {
+  flex: 1; /* Allows mic details to take up remaining space */
+  order: 2; /* Place mic-details second in the flex order */
+}
+
+.flier-img {
+  display: flex; /* Use flex to center the image within its container */
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  /* Orange accent color (255, 152, 0) for box shadow */
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
+  width: 150px; /* Standardized fixed width for the image container */
+  height: 200px; /* Standardized fixed height for the image container */
+  flex-shrink: 0; /* Prevent the image container from shrinking */
+  order: 1; /* Place flier-img first in the flex order */
+}
+
+.flier-image {
+  width: 100%; /* Make the image take up 100% of its container's width */
+  height: 100%; /* Make the image take up 100% of its container's height */
+  object-fit: contain; /* Ensure the whole image is visible, even if it leaves empty space */
+  border-radius: 8px;
+  /* Orange accent color (255, 152, 0) for box shadow */
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+
+@media only screen and (max-width: 768px) {
+  .open-mic-page-container h1 {
+    font-size: 2.2em;
+  }
+  .open-mic-page-container .intro-text {
+    font-size: 1em;
+    margin-bottom: 2em;
+  }
+  .day-section .mat-expansion-panel-header .mat-panel-title {
+    font-size: 1.15em;
+  }
+  .day-section .mat-expansion-panel .mat-expansion-panel-body {
+    padding: 15px 20px !important;
+  }
+  .mic-item {
+    flex-direction: column; /* Stack image and details vertically on smaller screens */
+    align-items: center; /* Center items when stacked */
+  }
+  .flier-img {
+    width: 100%; /* Allow image container to take full width */
+    height: auto; /* Adjust height automatically */
+    max-width: 200px; /* Constrain max width for images on mobile */
+    margin-bottom: 15px; /* Add space below image */
+    order: unset; /* Remove order property to revert to HTML order (image first) */
+  }
+  .mic-details {
+    order: unset; /* Remove order property to revert to HTML order (details second) */
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .open-mic-page-container {
+    padding: 20px 10px;
+  }
+  .open-mic-page-container h1 {
+    font-size: 1.9em;
+  }
+  .open-mic-page-container .intro-text {
+    font-size: 0.95em;
+  }
+  .day-section .mat-expansion-panel {
+    margin-bottom: 15px !important;
+    border-radius: 6px !important;
+  }
+  .day-section .mat-expansion-panel-header {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    border-radius: 6px !important;
+  }
+  .day-section .mat-expansion-panel-header .mat-panel-title {
+    font-size: 1.05em;
+  }
+  .day-section .mat-expansion-panel .mat-expansion-panel-body {
+    padding: 15px !important;
+  }
+  .mic-item {
+    font-size: 0.9em;
+    padding: 10px 0;
+  }
+}

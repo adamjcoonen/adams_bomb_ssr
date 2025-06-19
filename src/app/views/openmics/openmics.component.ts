@@ -14,11 +14,10 @@ import { MatCard } from '@angular/material/card';
   ],
   providers: [OpenMicsService],
   templateUrl: './openmics.component.html',
-  styleUrl: './openmics.component.css',
+  styleUrl: './openmics.component.scss',
 })
 export class OpenMicsComponent {
   daysOfWeek: string[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-  opneMicList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]); // Initialize with an empty array
   openMicList: any[] = [];
   constructor(
     private openMicsService: OpenMicsService,
@@ -29,17 +28,14 @@ export class OpenMicsComponent {
   ngOnInit() {
     // This method is called when the component is initialized
     // You can perform any setup or data fetching here
-    this.openMicsService.openMicList();
     this.getOpenMicList();
   }
   getOpenMicList(): void {
-    this.openMicsService.openMicListBehaviorSubject.subscribe((data: any[]) => {
-      console.log(data, 'open mic data in open mic component');
+    this.openMicsService.openMicList().subscribe((data: any[]) => {
+      console.log(data, 'open mic data in openmics component');
       if (data && data.length > 0) {
-        console.log(data, 'open mic data in open mic component after if');
-        this.opneMicList$.next(data);
-        this.openMicList = this.opneMicList$.value;
+        this.openMicList = data;
       }
-    });
+    })
   }
 }

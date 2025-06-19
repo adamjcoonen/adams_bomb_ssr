@@ -49,7 +49,6 @@ export class ComicsService {
 `;
   
   constructor( private http: HttpClient) { 
-    this.comicsList()
     this.config = 'featuredComicList'
   };
   
@@ -67,6 +66,47 @@ export class ComicsService {
       tap((response: any) => {
         console.log('response', response)
         // this.comicListBehaviorSubject.next(response.data[this.config])
+      }),
+    )
+   }
+
+   comicById(id: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    })
+    const body = {
+      query: `{
+        allFeaturedComicLists(filter: { id: { eq: "${id}" } }) {
+          id
+          firstName
+          headshot {
+            id
+            url
+          }
+          lastName
+          position
+          role
+          bio
+          tictoclink {
+            value
+          }
+          socialMediaLinks {
+            value
+          }
+          instalink {
+            value
+          }
+          clips {
+            youtubeurl
+            name
+          }
+        }
+      }`
+    };
+
+    return this.http.post(this.API_ENDPOINT, body, { headers }).pipe(
+      tap((response: any) => {
+        console.log('response', response)
       }),
     )
    }

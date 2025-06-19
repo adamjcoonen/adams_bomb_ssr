@@ -1,5 +1,5 @@
+<div class="content-container" *ngIf="comic">
 <h1 class="title">{{comic.firstName}} {{comic.lastName}}</h1>
-<div class="content-container">
     <div class="headshot-container">
         <img class="bio-headshot" src="{{comic.headshot.url}}" alt="Headshot">
     </div>
@@ -21,7 +21,7 @@
                         Credits
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>{{comic.credits.value.document.children[0].children[0].value}}</p>
+                <p>{{comic.credits.value.document.children[0].children[0]}}</p>
             </mat-expansion-panel>
 
             <mat-expansion-panel class="expansion-panel">
