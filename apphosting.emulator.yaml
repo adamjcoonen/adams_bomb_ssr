@@ -1,35 +1,29 @@
+# apphosting.yaml
+framework: angular
+outputDirectory: dist/adams_bomb_ssr/browser
+server: 
+  entrypoint: dist/adams_bomb_ssr/server/server.mjs
+runConfig:
+  minInstances: 0
+  maxInstances: 100
+  concurrency: 100
+  cpu: 0
+  memoryMiB: 1024
 env:
-  # Configure environment variables.
-  # See https://firebase.google.com/docs/app-hosting/configure#user-defined-environment
   - variable: MESSAGE
     value: Hello world!
-  #   availability:
-  #     - BUILD
-  #     - RUNTIME
-
-  # Grant access to secrets in Cloud Secret Manager.
-  # See https://firebase.google.com/docs/app-hosting/configure#secret-parameters
   - variable: DATO_CMS_TOKEN
-    secret:
-      name: DATO_CMS_TOKEN
-      version: latest
-    availibilty:
+    secret: DATO_CMS_TOKEN 
+    availability:
       - BUILD
       - RUNTIME
-    secretManager: true
-  - variable: GOOGLE_MAPS_API_KEY
-    secret:
-      name: GOOGLE_MAPS_API_KEY
-      version: latest
-    availibilty:
+  - variable: google-maps-api-key 
+    secret: google-maps-api-key 
+    availability:
       - BUILD
       - RUNTIME
-    secretManager: true
-  - variable: GOOGLE_MAPS_API_ID
-    secret:
-      name: GOOGLE_MAPS_API_ID
-      version: latest
-    availibilty:
+  - variable: google-maps-map-id
+    secret: google-maps-map-id 
+    availability:
       - BUILD
       - RUNTIME
-    secretManager: true

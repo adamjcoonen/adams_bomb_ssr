@@ -9,6 +9,7 @@ import axios from 'axios';
 // import { SecretManagerServiceClient} from '@google-cloud/secret-manager';
 import { google } from 'googleapis';
 import dotenv from 'dotenv';
+import NodeCache from 'node-cache';
 
 const googleApiKey = process.env['GOOGLE_MAPS_API_KEY'];
 
@@ -27,7 +28,7 @@ const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 // Use fileURLToPath to get __dirname in ES module context:
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const BROWSER_PATH = join(__dirname, '../browser');
-
+let cachedDatoCmsToken: string | undefined = undefined;
 
 /**
  * Retrieves a secret from Google Cloud Secret Manager.
@@ -53,7 +54,9 @@ async function fetchSecretByName(secretName: string): Promise<string | undefined
       name: `projects/${projectId}/secrets/${secretName}/versions/latest`, // Use projectId
     });
 
-    return Buffer.from(res.data.payload?.data?.toString() as string, 'base64').toString('utf8');
+    const token = Buffer.from(res.data.payload?.data?.toString() as string, 'base64').toString('utf8');
+    cachedDatoCmsToken = token
+    return token; // Return the secret value
   } catch (error) {
     console.error('Error fetching secret:', error);
     throw error; // Re-throw the error to be caught by the caller
@@ -73,18 +76,6 @@ const commonEngine = new CommonEngine();
 
 app.use(express.json());
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/**', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
-
 // Helper to get the DatoCMS token
 async function getDatoCmsToken(): Promise<string | undefined> {
   // 1. Try local environment variable first (from .env)
@@ -92,6 +83,12 @@ async function getDatoCmsToken(): Promise<string | undefined> {
     console.log('Using local DatoCMS token from DATO_CMS_TOKEN_LOCAL environment variable.');
     return process.env['DATO_CMS_TOKEN'];
   }
+
+  if (cachedDatoCmsToken) {
+    console.log('Using cached DatoCMS token from in-memory cache.');
+    return cachedDatoCmsToken;
+  }
+
 
   // 2. Fallback to Google Secret Manager (for production or if local isn't set)
   console.log('Local DatoCMS token not found, attempting to fetch from Google Secret Manager.');
@@ -103,6 +100,8 @@ async function getDatoCmsToken(): Promise<string | undefined> {
     throw error; // Re-throw to be handled by the route
   }
 }
+
+const datoCmsResponseCache = new NodeCache({ stdTTL: 300, checkperiod: 60 }); // Cache for 5 minutes (300 seconds)
 
 app.post('/api/datocms/', async (req, res) => {
   let datoCmsToken: string | undefined;
@@ -120,6 +119,22 @@ app.post('/api/datocms/', async (req, res) => {
   if (!query) {
     return res.status(400).json({ error: 'GraphQL query is required in the request body.' });
   }
+
+    const cacheKey = JSON.stringify(query); // Use the query as a cache key
+  
+    // Try to get from in-memory cache first
+    const cachedData = datoCmsResponseCache.get(cacheKey);
+    if (cachedData) {
+      const cacheDataTyped = cachedData as { data: any; headers?: Record<string, string> };
+      console.log('Serving DatoCMS data from in-memory response cache.');
+      // Re-add X-DatoCMS-Cache-Tags if they were part of the cached response for CDN
+      if (cacheDataTyped.headers && cacheDataTyped.headers['x-cache-tags']) {
+        res.setHeader('X-DatoCMS-Cache-Tags', cacheDataTyped.headers['x-cache-tags']);
+      }
+      // Set Cache-Control for CDN and browser (even for cached responses)
+      res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=300'); // Example: 1 min browser, 5 min CDN
+      return res.status(200).json(cacheDataTyped.data);
+    }
 
   const headers = {
     'Content-Type': 'application/json',
