@@ -4,7 +4,7 @@ outputDirectory: dist/adams_bomb_ssr/browser
 server: 
   entrypoint: dist/adams_bomb_ssr/server/server.mjs
 runConfig:
-  minInstances: 2
+  minInstances: 0
   maxInstances: 100
   concurrency: 100
   cpu: 2
