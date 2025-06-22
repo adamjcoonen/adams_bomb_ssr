@@ -186,8 +186,15 @@ app.get('**', (req, res, next) => {
       publicPath: browserDistFolder,
       providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
     })
-    .then((html) => res.send(html))
-    .catch((err) => next(err));
+    .then((html) => {
+      // Set Cache-Control headers for CDN and browser caching
+      // Adjust max-age and s-maxage based on content dynamism.
+      // For a comedy show website, main pages might not change very frequently.
+      // Example: Cache for 10 minutes in browser, 1 hour at CDN.
+      res.setHeader('Cache-Control', 'public, max-age=600, s-maxage=3600'); [5, 6]
+      res.send(html);
+    })
+   .catch((err) => next(err));
 });
 
 /**
