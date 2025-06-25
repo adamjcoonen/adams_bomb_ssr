@@ -10,7 +10,7 @@
     "build:client-and-server-bundles": "node ./scripts/set-env.js && ng build --configuration production",
     "serve:ssr:adams_bomb_ssr": "node dist/adams_bomb_ssr/server/server.mjs",
     "build:watch:client_server": "ng build --watch --configuration development",
-    "serve:watch:server": "nodemon --watch dist/adams_bomb_ssr/server/server.mjs dist/adams_bomb_ssr/server/server.mjs",
+    "serve:watch:server": "nodemon dist/adams_bomb_ssr/server/server.mjs",
     "dev": "concurrently \"npm:build:watch:client_server\" \"npm:serve:watch:server\""
   },
   "private": true,
