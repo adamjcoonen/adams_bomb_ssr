@@ -22,8 +22,7 @@ env:
     availability:
       - BUILD
       - RUNTIME
-  - variable: google-maps-map-id
-    secret: google-maps-map-id 
-    availability:
-      - BUILD
-      - RUNTIME
+  # - variable: Maps_API_KEY
+  #   secret: Maps_API_KEY # Reference the secret created in Secret Manager
+  #   availability:
+  #       - RUNTIME # Make it available at runtime, not build time

@@ -8,7 +8,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { render } from 'datocms-structured-text-to-html-string';
 
 
-
+declare const google: any;
 @Component({
   selector: 'app-show-details',
   templateUrl: './show-details.component.html',
@@ -27,7 +27,6 @@ export class ShowDetailsComponent implements OnInit, AfterViewInit{
     @Inject(PLATFORM_ID) private platformId: Object,
     private route: ActivatedRoute,
     private router: Router,
-    private checkoutService: CheckoutService
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.show = navigation?.extras.state;
@@ -37,52 +36,60 @@ export class ShowDetailsComponent implements OnInit, AfterViewInit{
   ngOnInit() {
     if (!this.show) {
       this.router.navigate(['/']);
-    }
-    else {
+      return; // Exit if no show data
+    } else {
       console.log(this.show, 'show');
     }
-    this.center = { lat: +this.show.showLocation.latitude, lng: +this.show.showLocation.longitude };
-    this.map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
-      center: this.center,
-      zoom: 18,
-      mapId: process.env['googleMapsApiKey'],
-      streetViewControl: false,
-    });
-    console.log(this.map, 'map');
-    const marker = new google.maps.marker.AdvancedMarkerElement({
-      map: this.map,
-      position: this.center,
-      title: this.show.showLocation.name,
 
-    });
-    console.log(this.show, "show details")
+    // IMPORTANT: Only initialize Google Maps if running in the browser
+    if (isPlatformBrowser(this.platformId)) {
+      // console.log(process.env, process.env['googleMapsApiId'], 'googleMapsApiId');
+      this.center = { lat: +this.show.showLocation.latitude, lng: +this.show.showLocation.longitude };
 
-    const infoWindow = new google.maps.InfoWindow({
-      content: `<div style="color: black;">
-                  <h3>${this.show.venueName}</h3>
-                  <p style="color: black;">Click the links below:</p>
-                  <a href="https://www.google.com/maps?q=${this.center}" target="_blank" style="color: black;">View on Google Maps</a><br>
-                  <a href="http:" id="get-directions" style="color: black;">Get Directions</a>
-                </div>`,
-    });
+      // Ensure the map element exists before trying to create the map
+      const mapElement = document.getElementById('map');
+      if (mapElement) {
+        this.map = new google.maps.Map(mapElement as HTMLElement, {
+          center: this.center,
+          zoom: 10,
+          // mapId: process.env['googleMapsApiId'], // Ensure this API key is loaded client-side if used
+        });
+        console.log(this.map, 'map');
 
-    marker.addListener('click', () => {
-      infoWindow.open(this.map, marker);
+        const marker = new google.maps.marker.AdvancedMarkerElement({
+          map: this.map,
+          position: this.center,
+          title: this.show.showLocation.name,
+        });
 
-      // Add event listener for "Get Directions" link
-      setTimeout(() => {
-        const directionsLink = document.getElementById('get-directions');
-        if (directionsLink) {
-          directionsLink.addEventListener('click', (event) => {
-            event.preventDefault();
-            this.openDirections(this.center.lat, this.center.lng);
-          });
-        }
-      }, 0);
-    });
+        const infoWindow = new google.maps.InfoWindow({
+          content: `<div style="color: black;">
+                      <h3>${this.show.venueName}</h3>
+                      <p style="color: black;">Click the links below:</p>
+                      <a href="https://www.google.com/maps?q=${this.center.lat},${this.center.lng}" target="_blank" style="color: black;">View on Google Maps</a><br>
+                      <a href="#" id="get-directions" style="color: black;">Get Directions</a>
+                    </div>`,
+        });
 
+        marker.addListener('click', () => {
+          infoWindow.open(this.map, marker);
 
-
+          setTimeout(() => {
+            const directionsLink = document.getElementById('get-directions');
+            if (directionsLink) {
+              directionsLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                this.openDirections(this.center.lat, this.center.lng);
+              });
+            }
+          }, 0);
+        });
+      } else {
+        console.warn('Map element with ID "map" not found. Google Map will not be displayed.');
+      }
+    } else {
+      console.log('Google Maps initialization skipped on server-side rendering.');
+    }
   }
 
   ngAfterViewInit() {

@@ -32,7 +32,6 @@ export class OpenMicsComponent {
   }
   getOpenMicList(): void {
     this.openMicsService.openMicList().subscribe((data: any[]) => {
-      console.log(data, 'open mic data in openmics component');
       if (data && data.length > 0) {
         this.openMicList = data;
       }

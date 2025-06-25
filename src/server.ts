@@ -29,6 +29,8 @@ const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const BROWSER_PATH = join(__dirname, '../browser');
 let cachedDatoCmsToken: string | undefined = undefined;
+let cachedGoogleMapsApiKey: string | undefined = undefined;
+
 
 /**
  * Retrieves a secret from Google Cloud Secret Manager.
@@ -101,9 +103,39 @@ async function getDatoCmsToken(): Promise<string | undefined> {
   }
 }
 
+// NEW Helper to get the Google Maps API Key
+async function getGoogleMapsApiKey(): Promise<string | undefined> {
+  // 1. Try local environment variable first (from .env or Cloud Run env var)
+  if (process.env['Maps_API_KEY']) {
+    console.log('Using Google Maps API key from environment variable.');
+    return process.env['Maps_API_KEY'];
+  }
+
+  if (cachedGoogleMapsApiKey) {
+    console.log('Using cached Google Maps API key from in-memory cache.');
+    return cachedGoogleMapsApiKey;
+  }
+
+  // 2. Fallback to Google Secret Manager (for production if env var not set directly)
+  console.log('Google Maps API key not found in environment, attempting to fetch from Google Secret Manager.');
+  try {
+    const key = await fetchSecretByName('Maps_API_KEY');
+    if (key) {
+      cachedGoogleMapsApiKey = key;
+    }
+    return key;
+  } catch (error) {
+    console.error('Failed to retrieve Google Maps API key from any source.');
+    // Do NOT re-throw here if you want the API endpoint to still serve
+    // an error rather than crash the server initialization.
+    return undefined; // Let the /api/google-maps-api-key endpoint handle the error
+  }
+}
+
 const datoCmsResponseCache = new NodeCache({ stdTTL: 300, checkperiod: 60 }); // Cache for 5 minutes (300 seconds)
 
-app.post('/api/datocms/', async (req, res) => {
+
+app.post('/api/datocms/', async (req: any, res: any) => {
   let datoCmsToken: string | undefined;
   try {
     datoCmsToken = await getDatoCmsToken();
@@ -207,5 +239,22 @@ if (isMainModule(import.meta.url)) {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
+
+// NEW API endpoint to serve the Google Maps API Key
+app.get('/api/google-maps-api-key', async (req, res) => {
+  try {
+    const apiKey = await getGoogleMapsApiKey();
+    if (apiKey) {
+      res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
+      res.status(200).json({ apiKey: apiKey });
+    } else {
+      console.error('Google Maps API key could not be retrieved.');
+      res.status(500).json({ error: 'Google Maps API key not available.' });
+    }
+  } catch (error) {
+    console.error('Error in /api/google-maps-api-key endpoint:', error);
+    res.status(500).json({ error: 'Internal server error during Google Maps API key retrieval.' });
+  }
+});
 
 export default app;

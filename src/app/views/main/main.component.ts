@@ -37,22 +37,5 @@ export class MainComponent {
   }
 
   ngOnInit() {
-    // this.oauthService.loadDiscoveryDocumentAndTryLogin().then(_ => {
-    //   if (this.oauthService.hasValidAccessToken()) {
-    //     // Redirect to home or dashboard page upon successful authentication
-    //     // You can use Angular Router for this
-    //     console.log('Logged in');
-    //   } else {
-    //     // Handle login failure
-    //     // Redirect to login page or show an error message
-    //     console.log('Logged out');
-    //   }
-    // });
-    // this.featuredMediaService.featuredMediaBehaviorSubject.subscribe((data: any) => {
-    //   if (data && data.length > 0) {
-    //     console.log(data, 'featured media data in main component');
-    //     this.dataLoaded = true;
-    //   }
-    // })
   }
 }

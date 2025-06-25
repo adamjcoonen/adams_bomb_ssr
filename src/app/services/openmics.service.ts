@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, BehaviorSubject, throwError, tap } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-// import { ShowRecord } from 'src/generated/graphql';
 
 @Injectable({
   providedIn: 'root'
