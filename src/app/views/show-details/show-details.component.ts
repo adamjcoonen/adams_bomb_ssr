@@ -110,7 +110,6 @@ export class ShowDetailsComponent implements OnInit, AfterViewInit{
       zoom: 10,
       mapId: 'google', // Uncomment if you have a custom Map ID
     });
-    console.log(this.map, 'map initialized');
 
     const marker = new google.maps.marker.AdvancedMarkerElement({
       map: this.map,

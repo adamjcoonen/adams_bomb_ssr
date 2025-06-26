@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./shows.component.scss'],
 })
 export class ShowsComponent implements OnInit {
-  // showsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   showsList: any[] = [];
   listType!: "home" | "list";
   isCalendar: boolean = false

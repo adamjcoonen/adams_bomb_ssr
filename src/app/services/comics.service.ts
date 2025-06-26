@@ -62,12 +62,7 @@ export class ComicsService {
     };
 
     const url = `${this.API_ENDPOINT}`
-    return this.http.post(url, body, { headers }).pipe(
-      tap((response: any) => {
-        console.log('response', response)
-        // this.comicListBehaviorSubject.next(response.data[this.config])
-      }),
-    )
+    return this.http.post(url, body, { headers })
    }
 
    comicById(id: string): Observable<any> {
@@ -104,10 +99,6 @@ export class ComicsService {
       }`
     };
 
-    return this.http.post(this.API_ENDPOINT, body, { headers }).pipe(
-      tap((response: any) => {
-        console.log('response', response)
-      }),
-    )
+    return this.http.post(this.API_ENDPOINT, body, { headers })
    }
 }

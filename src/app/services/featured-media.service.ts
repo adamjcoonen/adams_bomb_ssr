@@ -90,7 +90,6 @@ export class FeaturedMediaService {
    const url = `${this.API_ENDPOINT}`
    return this.http.post(url, body, { headers }).pipe(
      tap((response: any) => {
-       console.log('response', response)
      }),
    )
   }

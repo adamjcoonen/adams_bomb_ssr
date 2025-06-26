@@ -175,7 +175,6 @@ app.post('/api/datocms/', async (req: any, res: any) => {
 
   try {
     const response = await axios.post('https://graphql.datocms.com/', { query }, { headers });
-    // console.log('DatoCMS Response:', response.data) // Keep for debugging if needed
     res.status(response.status).json(response.data);
   } catch (error: any) {
     console.error('Error fetching data from DatoCMS:', error.message);

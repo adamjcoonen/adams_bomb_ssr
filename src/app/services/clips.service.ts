@@ -41,7 +41,6 @@ import { catchError, map, } from 'rxjs/operators';
       }
       return this.http.post<any>(this.API_ENDPOINT, body, { headers }).pipe(
         map((response: any) => {
-          // console.log('Response:', response);
           return response.data.allClips;
         }),
         catchError(this.handleError)

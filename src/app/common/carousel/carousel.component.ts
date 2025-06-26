@@ -82,7 +82,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     if (this.isBrowser && this.slides.length > 0) {
       this.loadYouTubeIframeAPI();
-      this.startAutoSlide();
+      // this.startAutoSlide();
     }
     // After the view is initialized, especially the YouTube iframes, initialize the players
     if (this.isBrowser) {
@@ -114,15 +114,11 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   }
 
   getCarouselData(): void {
-    console.log('Fetching carousel data...');
     this.featuredMediaService.featuredMedia().subscribe((data: any) => {
-      console.log(data.data.allCarousels[0], 'carousel data');
       // Check if the data is valid and contains slides
       if (data && data.data && data.data.allCarousels && data.data.allCarousels.length > 0) {
         
         this.slides = data.data.allCarousels[0].featuredContentBlock || [];
-        console.log(this.slides, 'slides');
-        // this.cdr.detectChanges(); // Trigger change detection to update the view
       } else {
         console.error('Invalid carousel data received:', data);
       }

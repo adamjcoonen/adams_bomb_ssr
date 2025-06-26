@@ -19,9 +19,8 @@ import { isPlatformBrowser } from '@angular/common';
     @HostListener('window:scroll', [])
     onWindowScroll() {
       if (isPlatformBrowser(this.platformId)) {
-        // console.log('Window scrolled');
         const scrollPosition = document.documentElement.scrollTop;
-        this.showFooter = scrollPosition > 100; // Show footer after scrolling 100px
+        this.showFooter = scrollPosition > 100;
       }
     }
   }

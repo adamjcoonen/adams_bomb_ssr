@@ -14,12 +14,26 @@
         }
       ]
     },
-    "apphosting": {
-      "backends": [
-        {
-          "name": "adams-bomb-ssr",
-          "entryPoint": "./src/server.ts"
-        }
-      ]
-    }
+    "apphosting": [
+      {
+        "id": "adams-bomb-ssr",
+        "region": "us-central1",
+        "target": "prod",
+        "env": [
+          { "variable": "googleMapsApiKey", "secret": "google-maps-api-key", "availability": ["RUNTIME"] },
+          { "variable": "DATO_CMS_TOKEN", "secret": "google-maps-api-key", "availability": ["RUNTIME"] },
+          { "variable": "DATO_CMS_TOKEN", "secret": "google-maps-map-id", "availability": ["RUNTIME"] }
+        ]
+      },
+      {
+        "id": "adams-bomb-ssr-staging",
+        "region": "us-central1",
+        "target": "staging",
+        "env": [
+          { "variable": "googleMapsApiKey", "secret": "google-maps-api-key", "availability": ["RUNTIME"] },
+          { "variable": "DATO_CMS_TOKEN", "secret": "google-maps-api-key", "availability": ["RUNTIME"] },
+          { "variable": "DATO_CMS_TOKEN", "secret": "google-maps-map-id", "availability": ["RUNTIME"] }
+        ]
+      }
+    ]
   }

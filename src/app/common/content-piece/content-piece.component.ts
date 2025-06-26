@@ -37,7 +37,6 @@ export class ContentPieceComponent {
       this.safeClipUrl = this.getSafeClipUrl(this.clip?.youtubeurl!);
   }
   setComponentType() {
-    // console.log(this.typeData, this.data, 'typeData')
     if (this.typeData === 'shows') {
       this.show = this.data;
     } else if (this.typeData === 'clips') {

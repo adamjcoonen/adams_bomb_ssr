@@ -48,7 +48,6 @@ export class OpenMicsService {
     };
     return this.http.post<any>(this.API_ENDPOINT, body, { headers }).pipe(
       map((response: any) => {
-        console.log(response, 'response from open mic query');
         return response.data.allOpenmics;
       }),
       catchError(this.handleError)

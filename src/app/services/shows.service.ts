@@ -55,7 +55,6 @@ export class ShowsService {
 
       const url = `${this.API_ENDPOINT}`
       this.http.post(url, body, { headers }).pipe(
-        // tap((response: any) => {console.log(response, 'response')}),
         catchError(this.handleError)
       ).subscribe((data: any) => {
         // console.log(data, 'shows data in the service')

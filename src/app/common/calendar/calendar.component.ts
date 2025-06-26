@@ -17,7 +17,6 @@ export class CalendarComponent {
     ngOnInit(): void {
       this.showsService.showListBehaviorSubject.subscribe((data: any[]) => {
         this.showData = data;
-        console.log(this.showData)
       })
       
     }
