@@ -7,7 +7,6 @@ import { isPlatformServer } from '@angular/common';
   providedIn: 'root'
 })
 export class FeaturedMediaService {
-  // public featuredMediaBehaviorSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   config: any;
 
   private readonly API_ENDPOINT = '/api/datocms/'

@@ -7,7 +7,6 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class OpenMicsService {
-  // public openMicListBehaviorSubject: BehaviorSubject<any[]> = new BehaviorSubject<any>({});
   config: any;
   openMicQuery = `{
     allOpenmics {
@@ -35,7 +34,6 @@ export class OpenMicsService {
   private readonly API_ENDPOINT = '/api/datocms/';
 
   constructor(private http: HttpClient) {
-    // this.openMicList()
   }
 
   

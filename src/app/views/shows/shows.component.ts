@@ -30,9 +30,8 @@ export class ShowsComponent implements OnInit {
   }
 
   getShows(): void {
-    this.showsService.showListBehaviorSubject.subscribe((data: any[]) => {
+    this.showsService.showsList().subscribe((data: any[]) => {
       if (data && data.length > 0) {
-        // console.log(data, 'shows data in show component');
         this.showsList = data;
       }
     });

@@ -12,7 +12,6 @@ import { tap } from 'rxjs/operators';
 
 
 export class ComicsService {
-  // public comicListBehaviorSubject: BehaviorSubject<[]> = new BehaviorSubject<any>([]);
   config: any;
 
   private readonly API_ENDPOINT = '/api/datocms'

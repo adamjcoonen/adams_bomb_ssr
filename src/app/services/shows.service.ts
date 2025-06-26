@@ -6,7 +6,6 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ShowsService {
-  public showListBehaviorSubject: BehaviorSubject<any[]> = new BehaviorSubject<any>({});
   config: any;
   showQuery = `{
     allShows {
@@ -41,41 +40,25 @@ export class ShowsService {
   private readonly API_ENDPOINT = '/api/datocms/';
 
   constructor(private http: HttpClient) {
-    // this.showsList()
   }
 
   
-  showsList(): void {
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-      const body = {
-       query: this.showQuery,
-     };
-
-      const url = `${this.API_ENDPOINT}`
-      this.http.post(url, body, { headers }).pipe(
-        catchError(this.handleError)
-      ).subscribe((data: any) => {
-        // console.log(data, 'shows data in the service')
-        this.showListBehaviorSubject.next(data.data.allShows.sort((a: any, b: any) => {
-          const dateA = new Date(a.showDate);
-          const dateB = new Date(b.showDate);
-          return dateA.getTime() - dateB.getTime();
-        }));
-      })
+  showsList(): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const body = {
+      query: this.showQuery
+    };
+    return this.http.post<any>(this.API_ENDPOINT, body, { headers }).pipe(
+      map((response: any) => {
+        return response.data.allShows;
+      }),
+      catchError(this.handleError)
+    ) as any;
   }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      console.error('An error occurred:', error.error.message);
-    } else {
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    return throwError(
-      'Something bad happened; please try again later.');
+  handleError(error: HttpErrorResponse) {
+    console.error('An error occurred:', error.message);
+    return throwError(() => new Error('Error on http call to datoCMS.'));
   }
-
 }

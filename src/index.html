@@ -12,7 +12,6 @@
     const apiKey = window.env?.googleMapsApiKey || 'AIzaSyDaGlwK-U8bkQg_uAGL2B3rvHGDOKz5unw';
     const mapId = window.env?.googleMapsMapId || '33b47436f83af294892d5757';
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=marker&map_id=${mapId}`;
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);

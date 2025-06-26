@@ -9,7 +9,6 @@ import { catchError, map, } from 'rxjs/operators';
     providedIn: 'root'
   })
   export class ClipsService {
-    public clipListBehaviorSubject: BehaviorSubject<any[]> = new BehaviorSubject<any>({});
     config: any;
     clipQuery = `{
       allClips {
