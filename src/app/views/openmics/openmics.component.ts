@@ -22,7 +22,6 @@ export class OpenMicsComponent {
   constructor(
     private openMicsService: OpenMicsService,
   ) {
-    // You can initialize any properties or services here if needed
   }
 
   ngOnInit() {
