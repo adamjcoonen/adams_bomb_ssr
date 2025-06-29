@@ -14,12 +14,15 @@ env:
   - variable: DATO_CMS_TOKEN
     secret: DATO_CMS_TOKEN 
     availability:
+      - BUILD
       - RUNTIME
   - variable: google-maps-api-key 
     secret: google-maps-api-key 
     availability:
+      - BUILD
       - RUNTIME
   - variable: google-maps-map-id
-    secret: google-maps-map-id
+    secret: google-maps-map-id 
     availability:
+      - BUILD
       - RUNTIME
