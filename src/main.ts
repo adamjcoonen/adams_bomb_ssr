@@ -13,7 +13,6 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule } from '@angular/forms';
 
-// import { routes }       from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { provideServiceWorker } from '@angular/service-worker';
 
