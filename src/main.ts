@@ -33,7 +33,6 @@ bootstrapApplication(AppComponent, {
       // OAuthModule.forRoot(),
       CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
       GoogleMapsModule,
-      // StripeModule,
       FormsModule
     ), provideServiceWorker('ngsw-worker.js', {
             enabled: !isDevMode(),
