@@ -6,10 +6,18 @@
       "rewrites": [
         {
           "source": "/api/**",
+          "run": {
+            "serviceId": "adams-bomb-ssr",
+            "region": "us-central1"
+          },
           "destination": "/api/**"
         },
         {
           "source": "**",
+          "run": {
+            "serviceId": "adams-bomb-ssr",
+            "region": "us-central1"
+          },
           "destination": "/index.html"
         }
       ]
@@ -20,9 +28,9 @@
         "region": "us-central1",
         "target": "prod",
         "env": [
-          { "variable": "googleMapsApiKey", "secret": "google-maps-api-key", "availability": ["RUNTIME"] },
-          { "variable": "DATO_CMS_TOKEN", "secret": "google-maps-api-key", "availability": ["RUNTIME"] },
-          { "variable": "DATO_CMS_TOKEN", "secret": "google-maps-map-id", "availability": ["RUNTIME"] }
+          { "variable": "Maps_API_KEY", "secret": "google-maps-api-key", "availability": ["RUNTIME"] },
+          { "variable": "DATO_CMS_TOKEN", "secret": "DATO_CMS_TOKEN", "availability": ["RUNTIME"] },
+          { "variable": "Maps_MAP_ID", "secret": "google-maps-map-id", "availability": ["RUNTIME"] }
         ]
       },
       {
@@ -30,9 +38,9 @@
         "region": "us-central1",
         "target": "staging",
         "env": [
-          { "variable": "googleMapsApiKey", "secret": "google-maps-api-key", "availability": ["RUNTIME"] },
-          { "variable": "DATO_CMS_TOKEN", "secret": "google-maps-api-key", "availability": ["RUNTIME"] },
-          { "variable": "DATO_CMS_TOKEN", "secret": "google-maps-map-id", "availability": ["RUNTIME"] }
+          { "variable": "Maps_API_KEY", "secret": "DATO_CMS_TOKEN", "availability": ["RUNTIME"] },
+          { "variable": "DATO_CMS_TOKEN", "secret": "DATO_CMS_TOKEN", "availability": ["RUNTIME"] },
+          { "variable": "Maps_MAP_ID", "secret": "google-maps-map-id", "availability": ["RUNTIME"] }
         ]
       }
     ]

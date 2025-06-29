@@ -192,10 +192,10 @@ app.post('/api/datocms/', async (req: any, res: any) => {
  } catch (error: any) {
   console.error('Error fetching data from DatoCMS:', error.message);
   if (error.response) {
-   console.error('DatoCMS response error:', error.response.status, error.response.data);
+   console.error('DatoCMS response error:', error.response.status);
    res.status(error.response.status || 500).json({
     error: 'Failed to fetch data from DatoCMS.',
-    details: error.response.data || error.message
+    details: error.message
    });
   } else {
    res.status(500).json({ error: 'Internal server error.', details: error.message });
