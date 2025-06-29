@@ -76,3 +76,13 @@
 
 Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
  
+[debug] [2025-06-29T20:56:15.133Z] ----------------------------------------------------------------------
+[debug] [2025-06-29T20:56:15.135Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js --debug apphosting:secrets:grantaccess DATO_CMS_TOKEN google-maps-api-key google-maps-map-id
+[debug] [2025-06-29T20:56:15.135Z] CLI Version:   14.9.0
+[debug] [2025-06-29T20:56:15.135Z] Platform:      win32
+[debug] [2025-06-29T20:56:15.135Z] Node Version:  v20.19.3
+[debug] [2025-06-29T20:56:15.135Z] Time:          Sun Jun 29 2025 16:56:15 GMT-0400 (Eastern Daylight Time)
+[debug] [2025-06-29T20:56:15.135Z] ----------------------------------------------------------------------
+[debug] 
+[error] 
+[error] Error: Too many arguments. Run firebase help apphosting:secrets:grantaccess for usage instructions
