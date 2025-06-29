@@ -1,4 +1,4 @@
-# apphosting.yaml
+
 framework: angular
 outputDirectory: dist/adams_bomb_ssr/browser
 server: 
