@@ -38,7 +38,7 @@
         "region": "us-central1",
         "target": "staging",
         "env": [
-          { "variable": "Maps_API_KEY", "secret": "DATO_CMS_TOKEN", "availability": ["RUNTIME"] },
+          { "variable": "Maps_API_KEY", "secret": "google-maps-api-key", "availability": ["RUNTIME"] },
           { "variable": "DATO_CMS_TOKEN", "secret": "DATO_CMS_TOKEN", "availability": ["RUNTIME"] },
           { "variable": "Maps_MAP_ID", "secret": "google-maps-map-id", "availability": ["RUNTIME"] }
         ]
