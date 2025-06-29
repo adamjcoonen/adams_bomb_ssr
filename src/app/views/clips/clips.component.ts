@@ -22,7 +22,6 @@ export class ClipsComponent {
 
   ngOnInit(): void {
     this.ClipsService.clipsList().subscribe((data: any[]) => {
-      console.log(data, 'clips data in clips component');
       if (data && data.length > 0) {
         this.clipsList = data;
       }

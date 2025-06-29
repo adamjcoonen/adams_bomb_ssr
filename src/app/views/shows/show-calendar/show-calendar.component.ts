@@ -28,7 +28,6 @@ export class ShowCalendarComponent {
   }
 
   ngOnInit() {
-    console.log(this.eventsList, 'eventsList');
     this.events = this.eventsList.map((event) => {
       return {
         title: event.showName,

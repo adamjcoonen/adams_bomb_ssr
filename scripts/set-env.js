@@ -40,10 +40,6 @@ export const environment = {
 };
 `;
 
-console.log('Writing environment config to environment.prod.ts');
 fs.writeFileSync(targetPathProd, envConfigFileProd);
 
-console.log('Writing environment config to environment.ts');
 fs.writeFileSync(targetPathDev, envConfigFileDev);
-
-console.log('Environment files updated successfully.');

@@ -34,7 +34,6 @@ export class ShowDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.show = navigation?.extras.state;
-    console.log(this.show, "see the show data");
   }
 
   ngOnInit() {
@@ -42,7 +41,6 @@ export class ShowDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
       this.router.navigate(['/']);
       return; // Exit if no show data
     } else {
-      console.log(this.show, 'show');
       this.center = { lat: +this.show.showLocation.latitude, lng: +this.show.showLocation.longitude };
     }
 
@@ -133,7 +131,6 @@ export class ShowDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
       mapId: this.mapId, // Use the mapId you got from your data if available, or from fetched config
       streetViewControl: false,
     });
-    console.log(this.map, 'map initialized');
 
     const marker = new google.maps.marker.AdvancedMarkerElement({
       map: this.map,

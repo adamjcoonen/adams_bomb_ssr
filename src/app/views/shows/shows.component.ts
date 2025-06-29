@@ -32,7 +32,9 @@ export class ShowsComponent implements OnInit {
   getShows(): void {
     this.showsService.showsList().subscribe((data: any[]) => {
       if (data && data.length > 0) {
-        this.showsList = data;
+        console.log(data, "shows data");
+        this.showsList = data.sort((a, b) => new Date(a.showDate).getTime() - new Date(b.showDate).getTime());
+
       }
     });
   }

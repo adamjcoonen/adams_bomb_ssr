@@ -33,7 +33,6 @@ export class ComicsComponent {
   ngOnInit(): void {
     this.comicsService.comicsList().subscribe((list) => {
       this.comics.next(list)
-      console.log(this.comics.value.data.allFeaturedComicLists, 'comics is this')
       this.comicsList = this.comics.value.data.allFeaturedComicLists.filter((comic: any) => comic.role != 'Founder')
       this.foundersList = this.comics.value.data.allFeaturedComicLists.filter((comic: any) => comic.role === 'Founder')
       this.producersList = this.comics.value.data.allFeaturedComicLists.filter((comic: any) => comic.role === 'Producing Partner')

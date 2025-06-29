@@ -34,7 +34,6 @@ export class PaymentsComponent {
     this.cardCaptureReady = true;
   }
   changeTicketNumber() {
-    console.log('changing ticket number');
   }
   
 }

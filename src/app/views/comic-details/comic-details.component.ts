@@ -25,11 +25,9 @@ export class ComicDetailsComponent {
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.comic = navigation?.extras.state;
-    console.log(this.comic, "see the comic data")
   }
 
   ngOnInit() {
-    console.log(this.comic, "see the comic data")
     this.comic.clips.forEach((clip: any) => {
       this.safeClipList.push(this.getSafeClipUrl(clip.youtubeurl!))
     })
