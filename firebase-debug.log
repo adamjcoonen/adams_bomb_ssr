@@ -1,0 +1,78 @@
+[debug] [2025-06-29T20:30:17.663Z] ----------------------------------------------------------------------
+[debug] [2025-06-29T20:30:17.665Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2025-06-29T20:30:17.666Z] CLI Version:   14.9.0
+[debug] [2025-06-29T20:30:17.666Z] Platform:      win32
+[debug] [2025-06-29T20:30:17.666Z] Node Version:  v20.19.3
+[debug] [2025-06-29T20:30:17.666Z] Time:          Sun Jun 29 2025 16:30:17 GMT-0400 (Eastern Daylight Time)
+[debug] [2025-06-29T20:30:17.666Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-06-29T20:30:17.827Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-06-29T20:30:17.828Z] Object "/apphosting/0" in "firebase.json" is missing required property: {"missingProperty":"backendId"}
+[debug] [2025-06-29T20:30:17.828Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-06-29T20:30:17.831Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-06-29T20:30:17.832Z] > authorizing via signed-in user (adamjcoonen@gmail.com)
+[info] i  emulators: Starting emulators: apphosting, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: apphosting, hosting"}}
+[debug] [2025-06-29T20:30:17.840Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-06-29T20:30:17.840Z] [apphosting] App Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-06-29T20:30:17.840Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-06-29T20:30:17.841Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"apphosting":[{"address":"127.0.0.1","family":"IPv4","port":5002}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2025-06-29T20:30:17.845Z] [hub] writing locator at C:\Users\adamj\AppData\Local\Temp\hub-adamsbombcomedy.json
+[debug] [2025-06-29T20:30:17.858Z] Checked if tokens are valid: false, expires at: 1751228524496
+[debug] [2025-06-29T20:30:17.859Z] Checked if tokens are valid: false, expires at: 1751228524496
+[debug] [2025-06-29T20:30:17.859Z] > refreshing access token with scopes: []
+[debug] [2025-06-29T20:30:17.860Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-06-29T20:30:17.860Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-06-29T20:30:18.032Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-06-29T20:30:18.032Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-06-29T20:30:18.089Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/adamsbombcomedy/sites 
+[debug] [2025-06-29T20:30:18.556Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/adamsbombcomedy/sites 200
+[debug] [2025-06-29T20:30:18.556Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/adamsbombcomedy/sites {"sites":[{"name":"projects/adamsbombcomedy/sites/adamsbombcomedy","defaultUrl":"https://adamsbombcomedy.web.app","appId":"1:610437699292:web:7b7dcdb75e4525fc034619","type":"DEFAULT_SITE"}]}
+[debug] [2025-06-29T20:30:18.556Z] Checked if tokens are valid: true, expires at: 1751232617032
+[debug] [2025-06-29T20:30:18.557Z] Checked if tokens are valid: true, expires at: 1751232617032
+[debug] [2025-06-29T20:30:18.557Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/adamsbombcomedy/webApps/1:610437699292:web:7b7dcdb75e4525fc034619/config [none]
+[debug] [2025-06-29T20:30:19.105Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/adamsbombcomedy/webApps/1:610437699292:web:7b7dcdb75e4525fc034619/config 200
+[debug] [2025-06-29T20:30:19.106Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/adamsbombcomedy/webApps/1:610437699292:web:7b7dcdb75e4525fc034619/config {"projectId":"adamsbombcomedy","appId":"1:610437699292:web:7b7dcdb75e4525fc034619","storageBucket":"adamsbombcomedy.firebasestorage.app","apiKey":"AIzaSyASUs9GFdNyn5svQ07s3o4e8-TLxlV2pyg","authDomain":"adamsbombcomedy.firebaseapp.com","messagingSenderId":"610437699292","measurementId":"G-TMDPTGXP00"}
+[debug] [2025-06-29T20:30:19.146Z] Checked if tokens are valid: true, expires at: 1751232617032
+[debug] [2025-06-29T20:30:19.146Z] Checked if tokens are valid: true, expires at: 1751232617032
+[debug] [2025-06-29T20:30:19.147Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/adamsbombcomedy [none]
+[debug] [2025-06-29T20:30:19.452Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/adamsbombcomedy 200
+[debug] [2025-06-29T20:30:19.453Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/adamsbombcomedy {"projectId":"adamsbombcomedy","projectNumber":"610437699292","displayName":"AdamsBombComedy","name":"projects/adamsbombcomedy","resources":{"hostingSite":"adamsbombcomedy"},"state":"ACTIVE","etag":"1_ea434482-48af-42f7-a0cc-6e952051db2a"}
+[debug] [2025-06-29T20:30:19.456Z] Specified "public" directory "dist/browser" does not exist; Deploy to Hosting site "adamsbombcomedy" may fail or be empty.
+[info] i  hosting[adamsbombcomedy]: Serving hosting files from: dist/browser {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mdist/browser\u001b[22m"}}
+[info] +  hosting[adamsbombcomedy]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[debug] [2025-06-29T20:30:19.573Z] Checked if tokens are valid: true, expires at: 1751232617032
+[debug] [2025-06-29T20:30:19.574Z] Checked if tokens are valid: true, expires at: 1751232617032
+[debug] [2025-06-29T20:30:19.574Z] Checked if tokens are valid: true, expires at: 1751232617032
+[debug] [2025-06-29T20:30:19.574Z] Checked if tokens are valid: true, expires at: 1751232617032
+[debug] [2025-06-29T20:30:19.575Z] Checked if tokens are valid: true, expires at: 1751232617032
+[debug] [2025-06-29T20:30:19.575Z] Checked if tokens are valid: true, expires at: 1751232617032
+[debug] [2025-06-29T20:30:19.575Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/adamsbombcomedy/secrets/DATO_CMS_TOKEN/versions/latest:access [none]
+[debug] [2025-06-29T20:30:19.577Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/adamsbombcomedy/secrets/google-maps-api-key/versions/latest:access [none]
+[debug] [2025-06-29T20:30:19.578Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/adamsbombcomedy/secrets/google-maps-map-id/versions/latest:access [none]
+[debug] [2025-06-29T20:30:19.811Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/adamsbombcomedy/secrets/google-maps-api-key/versions/latest:access 200
+[debug] [2025-06-29T20:30:19.812Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/adamsbombcomedy/secrets/google-maps-api-key/versions/latest:access {"name":"projects/610437699292/secrets/google-maps-api-key/versions/1","payload":{"data":"QUl6YVN5RGFHbHdLLVU4YmtRZ191QUdMMkIzcnZIR0RPS3o1dW53Cg==","dataCrc32c":"442435411"}}
+[debug] [2025-06-29T20:30:19.834Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/adamsbombcomedy/secrets/google-maps-map-id/versions/latest:access 200
+[debug] [2025-06-29T20:30:19.835Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/adamsbombcomedy/secrets/google-maps-map-id/versions/latest:access {"name":"projects/610437699292/secrets/google-maps-map-id/versions/1","payload":{"data":"MzNiNDc0MzZmODNhZjI5NDg5MmQ1NzU3Cg==","dataCrc32c":"443233375"}}
+[debug] [2025-06-29T20:30:19.856Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/adamsbombcomedy/secrets/DATO_CMS_TOKEN/versions/latest:access 200
+[debug] [2025-06-29T20:30:19.856Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/adamsbombcomedy/secrets/DATO_CMS_TOKEN/versions/latest:access {"name":"projects/610437699292/secrets/DATO_CMS_TOKEN/versions/2","payload":{"data":"ZjE1ZjM3NDFlOTU5NjU3MDViNjZkNGM0ZGVlOTM1","dataCrc32c":"2517790119"}}
+[info] i  apphosting: starting app with: 'npm run dev' {"metadata":{"emulator":{"name":"apphosting"},"message":"starting app with: 'npm run dev'"}}
+[warn] !  emulators: The Emulator UI is not starting, either because none of the running emulators have a UI component or the Emulator UI cannot determine the Project ID. Pass the --project flag to specify a project. {"metadata":{"emulator":{"name":"hub"},"message":"The Emulator UI is not starting, either because none of the running emulators have a UI component or the Emulator UI cannot determine the Project ID. Pass the --project flag to specify a project."}}
+[info] i  apphosting: connecting apphosting emulator {"metadata":{"emulator":{"name":"apphosting"},"message":"connecting apphosting emulator"}}
+[debug] [2025-06-29T20:30:23.296Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase Data Connect VSCode extension, this is expected and not an issue.
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────┬────────────────┐
+│ Emulator    │ Host:Port      │
+├─────────────┼────────────────┤
+│ App Hosting │ localhost:5002 │
+├─────────────┼────────────────┤
+│ Hosting     │ 127.0.0.1:5000 │
+└─────────────┴────────────────┘
+  Emulator Hub host: 127.0.0.1 port: 4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 

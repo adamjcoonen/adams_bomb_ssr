@@ -9,6 +9,7 @@ import axios from 'axios';
 import { google } from 'googleapis';
 import dotenv from 'dotenv';
 import NodeCache from 'node-cache';
+import * as xml2js from 'xml2js';
 
 // REMOVE: const googleApiKey = process.env['Maps_API_KEY']; // This line is unused and can be removed
 
@@ -203,23 +204,52 @@ app.post('/api/datocms/', async (req: any, res: any) => {
  }
 });
 
-// Main Google Maps config endpoint - provides both key and Map ID
-app.get('/api/google-maps-config', async (req, res) => {
- try {
-   const apiKey = await getGoogleMapsApiKey();
-   const mapId = await getGoogleMapsMapId();
-   if (apiKey && mapId) {
-     res.setHeader('Cache-Control', 'public, max-age=3600');
-     res.status(200).json({ apiKey: apiKey, mapId: mapId }); // Sending plain JSON string
-   } else {
-     console.error('Google Maps configuration (API Key or Map ID) not available on server.');
-     res.status(500).json({ error: 'Google Maps configuration not available.' });
-   }
- } catch (error) {
-   console.error('Error in /api/google-maps-config endpoint:', error);
-   res.status(500).json({ error: 'Internal server error during Google Maps config retrieval.' });
- }
-});
+  // Corrected: API route for fetching and parsing the RSS feed
+  app.get('/api/podcast-episodes', async (req, res) => {
+    const RSS_FEED_URL = 'https://media.rss.com/laughing-historically/feed.xml'; // Your actual RSS.com feed URL
+
+    try {
+      const response = await axios.get(RSS_FEED_URL);
+      const xml = response.data;
+
+      const parser = new xml2js.Parser({ explicitArray: false });
+
+      // Wrap the callback-based parseString in a Promise
+      const episodes = await new Promise((resolve, reject) => {
+        parser.parseString(xml, (err, result) => {
+          if (err) {
+            console.error('Error parsing RSS feed XML:', err);
+            return reject(new Error('Failed to parse RSS feed')); // Reject the promise on error
+          }
+
+          // Ensure result.rss.channel.item is an array, even if it's a single item
+          const items = Array.isArray(result.rss.channel.item) ? result.rss.channel.item : [result.rss.channel.item];
+
+          const parsedEpisodes = items.map((item: any) => ({
+            title: item.title,
+            link: item.link,
+            description: item.description,
+            pubDate: item.pubDate,
+            guid: item.guid,
+            audioUrl: item.enclosure?.$?.url, // Access the URL attribute from <enclosure>
+            audioType: item.enclosure?.$?.type,
+            audioLength: item.enclosure?.$?.length ? parseInt(item.enclosure.$.length, 10) : undefined,
+            imageUrl: item['itunes:image']?.$?.href // Access the href attribute from <itunes:image>
+          }));
+          resolve(parsedEpisodes); // Resolve the promise with the parsed data
+        });
+      });
+
+      res.json(episodes); // Send the JSON response after parsing completes
+    } catch (error: any) { // Explicitly cast error to 'any' for simpler handling
+      console.error('Error fetching or parsing RSS feed:', error);
+      // Differentiate between network/axios error and XML parsing error
+      const userMessage = error.message === 'Failed to parse RSS feed'
+                          ? 'Failed to parse podcast feed data.'
+                          : 'Failed to fetch podcast episodes due to a network error.';
+      res.status(500).json({ error: userMessage });
+    }
+  });
 
 // REMOVED: app.get('/api/google-maps-api-key', ...) as it's now redundant
 
