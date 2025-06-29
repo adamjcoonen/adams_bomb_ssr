@@ -6,7 +6,7 @@ runConfig:
   minInstances: 0
   maxInstances: 50
   concurrency: 10
-  cpu: 0
+  cpu: 1
   memoryMiB: 1024
 env:
   - variable: MESSAGE
