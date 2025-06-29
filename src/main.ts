@@ -11,7 +11,6 @@ import { routes } from './app/app.routes';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { GoogleMapsModule } from '@angular/google-maps';
-// import { StripeModule } from 'stripe-angular';
 import { FormsModule } from '@angular/forms';
 
 // import { routes }       from './app/app.routes';
