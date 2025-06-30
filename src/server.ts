@@ -204,6 +204,28 @@ app.post('/api/datocms/', async (req: any, res: any) => {
  }
 });
 
+
+app.get('/api/google-maps-config', async (req, res) => {
+  try {
+    const apiKey = await getGoogleMapsApiKey();
+    const mapId = await getGoogleMapsMapId();
+
+    if (!apiKey) {
+      console.error('Google Maps API Key not found for client.');
+      // Add return here after sending the response
+      return res.status(500).json({ error: 'Google Maps API Key configuration missing.' });
+    }
+    // Map ID might be optional depending on your map usage
+    
+    // Add return here after sending the response
+    return res.json({ apiKey, mapId });
+  } catch (error: any) { // Explicitly cast error to 'any' for simpler handling
+    console.error('Error in /api/google-maps-config:', error);
+    // Add return here after sending the response
+    return res.status(500).json({ error: 'Failed to retrieve Google Maps configuration.' });
+  }
+});
+
   // Corrected: API route for fetching and parsing the RSS feed
   app.get('/api/podcast-episodes', async (req, res) => {
     const RSS_FEED_URL = 'https://media.rss.com/laughing-historically/feed.xml'; // Your actual RSS.com feed URL
