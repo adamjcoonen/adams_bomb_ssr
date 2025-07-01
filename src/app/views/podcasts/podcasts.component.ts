@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { PodcastsService, PodcastEpisode } from '../../services/podcast.service';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-podcasts',
   standalone: true,
-  imports: [],
+  imports: [
+    MatExpansionModule
+  ],
   templateUrl: './podcasts.component.html',
   styleUrl: './podcasts.component.scss',
   providers: [

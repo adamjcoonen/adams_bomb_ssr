@@ -1,139 +1,325 @@
+/* ========================================================================== */
+/* BASE STYLES (Mobile-First - Optimized for smaller screens)                 */
+/* Emphasis on Flexbox for layout and responsive image handling.              */
+/* ========================================================================== */
 
-
-  .slide-media {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    height: 90vh;
-    max-width: 100%;
-    max-height: 80%;
-    overflow: hidden; /* Prevent overflow */
-  }
-
-  iframe, img {
-    // display: block;
-    width: auto;
-    height: 100%; /* Maintain aspect ratio */
-  }
-
-  .slide-content {
-    // position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 10px;
-    max-height: 600px;
-  }
-
-/* your-carousel.component.css */
-
+/* Overall Carousel Wrapper */
 .carousel-wrapper {
-  position: relative; /* Needed for absolute positioning of arrows */
+  position: relative;
   width: 100%;
-  overflow: hidden; /* Or however you manage slide overflow */
-  /* Add other carousel wrapper styles as needed */
-  background-color: #f0f0f0; /* Example background, arrows will be dark */
-  padding: 20px 0; /* Example padding */
-  min-height: 200px; /* Example height */
+  overflow: hidden;
+  background-color: #f0f0f0;
+  padding: 10px 0; /* Base padding */
+  min-height: 250px; /* Ensure a minimum height even on small screens */
+
+  /* Flex for centering the carousel-content horizontally and vertically */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Main Carousel Content Area (holds slides, arrows, indicators) */
 .carousel-content {
-  /* Styles for your slidable content area */
-  text-align: center;
-  max-height: 600px;
   display: flex;
-  height: 100vh;
-  width: auto;
+  flex-direction: column; /* Stack media and text vertically on mobile */
+  align-items: center; /* Center horizontally in column layout */
+  width: 100%; /* Take full width on mobile */
+  height: auto; /* Height adapts to content */
+  max-width: 100%; /* Ensures it doesn't overflow */
+  text-align: center; /* Center text content inside */
+  padding: 0 10px; /* Add some horizontal padding to prevent content hugging edges */
 }
 
+/* Individual Carousel Slide Item */
+.carousel-item {
+  display: flex;
+  flex-direction: column; /* Media and content stack within the item */
+  justify-content: center;
+  align-items: center; /* Center elements within the slide */
+  width: 100%; /* Each item takes full width of its parent */
+  height: 100%; /* Adapts to available vertical space */
+  box-sizing: border-box; /* Include padding in dimensions */
+}
+
+/* Container for Media (Image, Iframe) */
+.slide-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Media container takes full width */
+  height: 60vh; /* Use viewport height for initial scaling */
+  max-height: 350px; /* Cap max height for mobile to prevent excessively tall images */
+  overflow: hidden; /* Hide any overflow from scaling */
+}
+
+/* Styling for images and iframes within slide-media */
+iframe,
+img {
+  max-width: 100%; /* Ensure media doesn't overflow its container */
+  height: 100%; /* Take full height of .slide-media */
+  object-fit: contain; /* Shrink to fit, preserving aspect ratio (adds letterboxing) */
+  display: block; /* Remove any inline spacing issues */
+}
+
+/* Specific styling for the single photo slide (if different behavior needed) */
+.slide-media .slide-image {
+  object-fit: contain; /* Override to ensure photo is fully visible */
+  width: 100%; /* Max width */
+  height: auto; /* Height adapts to aspect ratio */
+}
+
+/* Container for Text Content/Captions */
+.slide-content {
+  position: relative; /* Relative for mobile; will become absolute on desktop */
+  width: 100%; /* Takes full width of carousel-item */
+  background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay for text contrast */
+  color: white;
+  padding: 15px; /* Ample padding */
+  box-sizing: border-box; /* Include padding in width */
+  margin-top: 10px; /* Space between media and content on mobile */
+  text-align: center; /* Center text within the content box */
+  max-height: none; /* No max-height on mobile */
+}
+
+/* Text elements within slide-content - Base Font Sizes */
+.slide-title h6 {
+  font-size: 1.1em;
+  margin: 0 0 8px; /* Clean up margins */
+}
+
+.carousel-caption h5 {
+  font-size: 1.3em;
+  margin: 0 0 5px;
+}
+
+.carousel-caption p.bio {
+  font-size: 0.85em;
+  line-height: 1.5;
+  margin: 0; /* Remove default paragraph margins */
+}
+
+/* Carousel Navigation Arrows */
 .carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10; /* Ensure arrows are above slides */
-
-  background-color: rgba(40, 40, 40, 0.6); /* Dark, slightly transparent background */
-  color: #e0e0e0; /* Light arrow color for contrast with its own dark background */
+  z-index: 10; /* Ensure arrows are on top */
+  background-color: rgba(40, 40, 40, 0.7); /* Slightly more opaque background */
+  color: #e0e0e0;
   border: none;
-  border-radius: 50%; /* Makes it circular */
+  border-radius: 50%;
   cursor: pointer;
-  padding: 0; /* Reset padding */
-  width: 44px;  /* Size of the button */
-  height: 44px; /* Size of the button */
+  padding: 0;
+  width: 36px; /* Slightly larger arrows for better touch targets */
+  height: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-  opacity: 0.7; /* Slightly transparent when not hovered */
+  opacity: 0.9; /* More visible on mobile */
 }
 
 .carousel-arrow:hover,
 .carousel-arrow:focus {
-  background-color: rgba(20, 20, 20, 0.8); /* Darker on hover/focus */
-  color: #ffffff; /* Brighter arrow color on hover/focus */
+  background-color: rgba(20, 20, 20, 0.9); /* Darker on hover/focus */
+  color: #ffffff;
   opacity: 1;
-  outline: none; /* Remove default focus outline if custom styling is preferred */
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow on hover/focus */
 }
 
-/* Optional: Add a subtle focus ring for accessibility if you remove outline */
 .carousel-arrow:focus-visible {
-  box-shadow: 0 0 0 2px Highlight; /* Or your preferred focus color */
-  /* For Firefox, you might need: box-shadow: 0 0 0 2px -moz-mac-focusring; */
-  /* Or use a custom outline: outline: 2px solid var(--your-focus-color); outline-offset: 2px; */
+  box-shadow: 0 0 0 2px Highlight, 0 2px 4px rgba(0, 0, 0, 0.3); /* Combined with hover shadow */
 }
-
 
 .prev-arrow {
-  left: 15px; /* Adjust positioning as needed */
+  left: 10px; /* Position closer to edge */
 }
 
 .next-arrow {
-  right: 15px; /* Adjust positioning as needed */
+  right: 10px; /* Position closer to edge */
 }
 
 .arrow-icon {
-  width: 24px;  /* Size of the SVG icon itself */
-  height: 24px; /* Size of the SVG icon itself */
-  stroke-width: 2.5; /* Can also be controlled here if not set in SVG */
+  width: 20px; /* Adjusted SVG icon size */
+  height: 20px;
+  stroke-width: 2.5;
 }
 
+/* Carousel Indicators (dots) */
 .carousel-indicators {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: static; /* Flow with the document on mobile */
+  margin-top: 20px; /* Space below carousel content */
   display: flex;
-  gap: 5px;
+  gap: 8px; /* Slightly larger gap between dots */
+  justify-content: center; /* Center indicators horizontally */
   z-index: 10;
-  color: white;
 
   .indicator {
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
+    background: rgba(255, 255, 255, 0.5); /* Lighter background for better contrast on dark carousel-wrapper */
+    border: 1px solid rgba(0, 0, 0, 0.3); /* Subtle border for definition */
     border-radius: 50%;
-    width: 10px;
-    height: 10px;
+    width: 12px; /* Slightly larger indicators */
+    height: 12px;
     cursor: pointer;
-    opacity: 0.7;
+    opacity: 0.8;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
 
     &.active {
       background: white;
       opacity: 1;
+      transform: scale(1.2); /* Slightly larger active dot */
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.8);
     }
   }
 }
 
-  .carousel-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    height: 100%;
-    // max-height: 500px;
+/* ========================================================================== */
+/* MEDIA QUERIES (Progressive Enhancement for Larger Screens)                 */
+/* ========================================================================== */
+
+/* Small Tablets and up (min-width: 600px) - Often portrait tablets */
+@media (min-width: 600px) {
+  .carousel-content {
+    max-width: 90%; /* Constrain width on wider mobile/small tablet screens */
   }
+
+  .slide-media {
+    height: 70vh; /* More vertical space */
+    max-height: 450px; /* Cap max height for small tablets */
+  }
+
+  .slide-content {
+    padding: 20px; /* More padding */
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+  }
+  .arrow-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Tablets and up (min-width: 768px) - Often landscape tablets, small laptops */
+@media (min-width: 768px) {
+  .carousel-wrapper {
+    padding: 20px 0;
+  }
+
+  .carousel-content {
+    flex-direction: column; /* Switch to horizontal layout for media and content */
+    height: 70vh; /* Set a fixed height for a more structured layout */
+    max-height: 600px; /* Max height for the entire carousel content */
+    width: 90%; /* Allow it to take more width, but still capped */
+    max-width: 900px; /* Max width for the whole carousel content */
+    justify-content: space-around; /* Distribute space around items */
+    align-items: center; /* Center vertically within the row */
+    padding: 0; /* Remove horizontal padding as content will flow */
+  }
+
+  .carousel-item {
+    flex-direction: column; /* Media and content side-by-side within the item */
+    justify-content: center;
+    align-items: stretch; /* Stretch to fill height of carousel-content */
+    width: 100%; /* Take full width for the active slide */
+  }
+
+  .slide-media {
+    height: 100%; /* Take full height of carousel-item */
+    max-height: none; /* No max height here, adapts to carousel-item */
+    flex: 1; /* Allow media to grow and shrink */
+  }
+
+  iframe,
+  img {
+    object-fit: cover; /* Images/videos cover the area, might crop */
+  }
+
+  .slide-media .slide-image {
+    object-fit: contain; /* Keep contain for the specific photo slide */
+  }
+
+  .slide-content {
+    position: absolute; /* Overlay content on larger screens */
+    bottom: 20px;
+    left: 20px;
+    width: auto; /* Width adapts to content */
+    max-width: 40%; /* Constrain width of the text overlay */
+    max-height: 80%; /* Cap height of the content overlay */
+    padding: 20px;
+    margin-top: 0; /* Remove top margin */
+    text-align: left; /* Text aligns left in overlay */
+    background: rgba(0, 0, 0, 0.75); /* Slightly more opaque overlay */
+    border-radius: 4px; /* Subtle rounded corners */
+  }
+
+  /* Font Sizes for Tablets */
+  .slide-title h6 {
+    font-size: 1.2em;
+  }
+  .carousel-caption h5 {
+    font-size: 1.5em;
+  }
+  .carousel-caption p.bio {
+    font-size: 0.9em;
+  }
+
+  .carousel-indicators {
+    position: absolute; /* Back to absolute positioning as overlay */
+    bottom: 15px; /* Adjust slightly from bottom */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Laptops and Desktops (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .carousel-content {
+    height: 80vh; /* Even taller for desktops */
+    max-height: 750px; /* Cap for very large screens */
+    max-width: 1100px; /* Widen the overall carousel content */
+  }
+
+  .slide-media {
+    flex: 2; /* Media takes more space than content on desktop */
+  }
+
+  .slide-content {
+    max-width: 35%; /* Adjust max-width for overlay */
+    padding: 25px;
+  }
+
+  /* Font Sizes for Desktops */
+  .slide-title h6 {
+    font-size: 1.3em;
+  }
+  .carousel-caption h5 {
+    font-size: 1.7em;
+  }
+  .carousel-caption p.bio {
+    font-size: 1em;
+  }
+
+  .carousel-arrow {
+    width: 50px; /* Larger arrows for desktop */
+    height: 50px;
+  }
+  .arrow-icon {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Larger Desktops (min-width: 1440px) */
+@media (min-width: 1440px) {
+  .carousel-content {
+    max-height: 900px;
+    max-width: 1400px;
+  }
+}
