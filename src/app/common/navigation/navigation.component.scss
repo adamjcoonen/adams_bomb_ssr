@@ -5,3 +5,12 @@
 .icon-embiggen {
     transform: scale(150%);
  }
+
+ .desktop-nav-links {
+    display: flex;
+    gap: 5px; // Space between horizontal links
+  
+    button {
+      color: white; // Ensure buttons in desktop nav are white
+    }
+  }

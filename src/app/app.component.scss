@@ -1,16 +1,69 @@
+/* app.component.css */
+
 .app-container {
-    background-color: black;
-    height: 100vh;
+  background-color: black;
+  /* Make the app-container take up the full viewport height */
+  height: 100vh;
+  /* Enable Flexbox on the main container */
+  display: flex;
+  /* Stack children vertically */
+  flex-direction: column;
 }
 
 .container-content {
-    background-color: black;
+  background-color: black;
+  /* This container needs to take up all available vertical space */
+  flex-grow: 1;
+  /* Make this also a flex container to manage its children (header, content, footer) */
+  display: flex;
+  flex-direction: column;
+  /* Ensure no overflow on this wrapper itself, the actual scrolling will be handled by .content */
+  overflow: hidden;
 }
 
+/* Styles for Angular Material cards within container-content */
 .container-content .mat-card {
-    background-color: black;
+  background-color: black;
 }
 
+/* Header component styling */
+app-header.header {
+  /* The header will take its natural height */
+  /* You can add any specific styling for your header here */
+  /* For example, if you want a border or shadow */
+  /* border-bottom: 1px solid #333; */
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.2); */
+  z-index: 100; /* Ensure header is above scrolling content */
+}
+
+/* Main Content Area */
+.content {
+  background-color: black;
+  /* This is the crucial part: it grows to fill all available space */
+  flex-grow: 1;
+  /* This makes the content area scroll if its content exceeds its height */
+  overflow-y: auto;
+  /* You can add padding here if you want space around your router-outlet content */
+  padding: 0; /* Or adjust as needed */
+  height: inherit;
+}
+
+/* Router outlet (the dynamic content) */
 .router {
-    background-color: black;
+  background-color: black;
+  /* The router-outlet itself might not need much direct styling,
+     its content (the loaded component) will define its dimensions */
+  /* Ensure it expands to fill .content if needed */
+  min-height: 100%; /* Important: ensure router-outlet pushes .content to scroll if content is short */
+}
+
+/* Footer component styling */
+.footer {
+  /* The footer will take its natural height */
+  /* Similar to header, add any specific styling here */
+  /* border-top: 1px solid #333; */
+  /* box-shadow: 0 -2px 5px rgba(0,0,0,0.2); */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+  z-index: 100; /* Ensure footer is above any potential background layers */
+  min-height: 6%;
 }

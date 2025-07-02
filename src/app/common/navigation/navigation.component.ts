@@ -1,32 +1,58 @@
-import { Component, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Subject, Observable } from 'rxjs';
+import { takeUntil, map, shareReplay } from 'rxjs/operators';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { isPlatformBrowser } from '@angular/common';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+
+interface NavLink {
+  label: string;
+  routerLink: string;
+}
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
-  standalone: true,
-  imports: [MatButtonModule, MatMenuModule, MatIconModule, RouterModule],
-
+  standalone: true, // Make it standalone for easier integration
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule
+  ]
 })
-export class NavigationComponent {
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private router: Router
-    ) { }
+export class NavigationComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
+  isHandset$: Observable<boolean>;
 
-  ngOnInit() {
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-      if(isPlatformBrowser(this.platformId)) { 
-        window.scrollTo(0, 0)
-      }
-    });
+  navLinks: NavLink[] = [
+    { label: 'Home', routerLink: '/' },
+    { label: 'Shows', routerLink: '/shows' },
+    { label: 'Featured Comics', routerLink: '/comics' },
+    { label: 'About Us', routerLink: '/about' },
+    { label: 'Clips', routerLink: '/clips' },
+    { label: 'Podcasts', routerLink: '/podcast' },
+    { label: 'DMV Open Mics', routerLink: '/openmics' },
+  ];
+
+  constructor(private breakpointObserver: BreakpointObserver) {
+    this.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
+      .pipe(
+        map(result => result.matches),
+        shareReplay(),
+        takeUntil(this.destroy$)
+      );
+  }
+
+  ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

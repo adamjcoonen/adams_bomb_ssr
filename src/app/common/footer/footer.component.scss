@@ -6,22 +6,34 @@
   margin: 0;
   display: flex;
   justify-content: center;
+  /* Color here sets for text, but may not be specific enough for <i> */
 }
 
 .social-media-links li {
-  margin: 1px 10px 1px 10px;
+  margin: 1px 10px; /* Shorthand for top/bottom, left/right */
 }
 
-.social-media-links a {
-  display: inline-block;
+/* *** CRITICAL FIX FOR ICON COLOR *** */
+/* Apply color directly to the Font Awesome icon element */
+.social-media-links a i {
+  color: white;
+  font-size: x-large; /* Keep font size here for the icon */
 }
+
+/* Also, reconsider this general 'a' rule, it's very broad and could cause conflicts */
+/* It's better to be specific about which 'a' elements you're styling */
+/* The font-size for icons should be on the <i> tag */
+a {
+  /* background-color: inherit; - This is fine */
+  /* color: white; - This should be handled by the more specific rule above */
+  /* font-size: x-large; - This should be on the <i> tag for icons */
+}
+
 
 .copyright {
   margin-top: .5em;
   font-size: 10px;
-}
-
-a {
-  font-size: x-large;
-  background-color: inherit;
+  color: white;
+  text-align: center; /* Use text-align for centering inline content */
+  /* justify-content: center; is for flex or grid containers, not for text block */
 }

@@ -1,33 +1,18 @@
-<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
-  <mat-icon class="white-icon icon-embiggen">menu</mat-icon>
-</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item routerLink="">
-    <mat-icon>home</mat-icon>
-    <span>Home</span>
+<ng-container *ngIf="isHandset$ | async; else desktopNav">
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
   </button>
-  <button mat-menu-item routerLink="shows">
-    <mat-icon>event</mat-icon>
-    <span>Shows</span>
-  </button>
-  <button mat-menu-item routerLink="comics">
-    <mat-icon>person</mat-icon>
-    <span>Comics</span>
-  </button>
-  <button mat-menu-item routerLink="clips">
-    <mat-icon>movie</mat-icon>
-    <span>Clips</span>
-  </button>
-  <button mat-menu-item routerLink="openmics">
-    <mat-icon>event</mat-icon>
-    <span>Open Mics</span>
-  </button>
-  <button mat-menu-item routerLink="podcast">
-    <mat-icon>PodCast</mat-icon>
-    <span>Podcast</span>
-  </button>
-  <button mat-menu-item routerLink="about">
-    <mat-icon>info</mat-icon>
-    <span>About Us</span>
-  </button>
-</mat-menu>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let link of navLinks" [routerLink]="link.routerLink">
+      {{ link.label }}
+    </button>
+  </mat-menu>
+</ng-container>
+
+<ng-template #desktopNav>
+  <div class="desktop-nav-links">
+    <button mat-button *ngFor="let link of navLinks" [routerLink]="link.routerLink">
+      {{ link.label }}
+    </button>
+  </div>
+</ng-template>
