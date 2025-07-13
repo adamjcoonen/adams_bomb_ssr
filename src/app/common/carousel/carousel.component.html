@@ -8,16 +8,16 @@
   </button>
   <ng-container class="ng-container" *ngFor="let slide of slides; let i = index" >
     <a [routerLink]="['/show/', slide.mediaLink.id]" [state]="slide.mediaLink" class="link-wrapper">
-    <div class="carousel-item" *ngIf="slide.mediaLink?.showFlier?.url && i === currentSlide" @carouselAnimation>
-      <div class="slide-content">
+      <div class="carousel-item" *ngIf="slide.mediaLink?.showFlier?.url && i === currentSlide" @carouselAnimation>
+        <div class="slide-content">
           <div class="slide-title">
             <h6>{{slide.title}}</h6>
           </div>
           <div class="carousel-caption">
-            <h5>{{slide.mediaLink.showName}}</h5>
+            <!-- <h5>{{slide.mediaLink.showName}}</h5> -->
             <!-- <p class="bio">{{slide.mediaLink.showDescription.value.document.children[0].children[0].value}}</p> -->
           </div>
-        </div>  
+          </div>  
         <div class="slide-media">
           <img [src]="slide.mediaLink.showFlier.url" alt="slide.title">
         </div>
@@ -28,7 +28,7 @@
         <div class='slide-title'>
         </div>
         <div class="carousel-caption">
-          <h5>{{slide.mediaLink.name}}</h5>
+          <!-- <h5>{{slide.mediaLink.name}}</h5> -->
         </div>
         <div class="slide-media">
           <iframe

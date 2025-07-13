@@ -34,10 +34,10 @@ export class NavigationComponent implements OnInit, OnDestroy {
     { label: 'Home', routerLink: '/' },
     { label: 'Shows', routerLink: '/shows' },
     { label: 'Featured Comics', routerLink: '/comics' },
-    { label: 'About Us', routerLink: '/about' },
     { label: 'Clips', routerLink: '/clips' },
     { label: 'Podcasts', routerLink: '/podcast' },
     { label: 'DMV Open Mics', routerLink: '/openmics' },
+    { label: 'About Us', routerLink: '/about' },
   ];
 
   constructor(private breakpointObserver: BreakpointObserver) {

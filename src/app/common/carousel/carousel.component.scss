@@ -47,7 +47,7 @@
   justify-content: center;
   align-items: center;
   width: 100%; /* Media container takes full width */
-  height: 60vh; /* Use viewport height for initial scaling */
+  height: 80vh; /* Use viewport height for initial scaling */
   max-height: 350px; /* Cap max height for mobile to prevent excessively tall images */
   overflow: hidden; /* Hide any overflow from scaling */
 }
@@ -64,8 +64,8 @@ img {
 /* Specific styling for the single photo slide (if different behavior needed) */
 .slide-media .slide-image {
   object-fit: contain; /* Override to ensure photo is fully visible */
-  width: 100%; /* Max width */
-  height: auto; /* Height adapts to aspect ratio */
+  width: auto; /* Max width */
+  height: 100%; /* Height adapts to aspect ratio */
 }
 
 /* Container for Text Content/Captions */
@@ -211,52 +211,42 @@ img {
   .carousel-wrapper {
     padding: 20px 0;
   }
+  .link-wrapper {
+    height: 100%;
+  }
 
   .carousel-content {
+    display: flex;
     flex-direction: column; /* Switch to horizontal layout for media and content */
-    height: 70vh; /* Set a fixed height for a more structured layout */
-    max-height: 600px; /* Max height for the entire carousel content */
-    width: 90%; /* Allow it to take more width, but still capped */
-    max-width: 900px; /* Max width for the whole carousel content */
-    justify-content: space-around; /* Distribute space around items */
-    align-items: center; /* Center vertically within the row */
-    padding: 0; /* Remove horizontal padding as content will flow */
+    // height: inherit; 
+    width: auto; 
+    max-width: 900px;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 0;
   }
 
   .carousel-item {
+    display: flex;
     flex-direction: column; /* Media and content side-by-side within the item */
     justify-content: center;
-    align-items: stretch; /* Stretch to fill height of carousel-content */
-    width: 100%; /* Take full width for the active slide */
+    align-items: start; /* Stretch to fill height of carousel-content */
+    // height: 8%; /* Take full height of carousel-content */
+    width: auto; /* Take full width for the active slide */
   }
 
-  .slide-media {
-    height: 100%; /* Take full height of carousel-item */
-    max-height: none; /* No max height here, adapts to carousel-item */
-    flex: 1; /* Allow media to grow and shrink */
-  }
+  // .slide-media {
+  //   height: 70%; /* Take full height of carousel-item */
+  //   width: auto;
+  //   flex: 1; /* Allow media to grow and shrink */
+  //   object-fit: contain;
+  // }
 
   iframe,
   img {
-    object-fit: cover; /* Images/videos cover the area, might crop */
-  }
-
-  .slide-media .slide-image {
-    object-fit: contain; /* Keep contain for the specific photo slide */
-  }
-
-  .slide-content {
-    position: absolute; /* Overlay content on larger screens */
-    bottom: 20px;
-    left: 20px;
-    width: auto; /* Width adapts to content */
-    max-width: 40%; /* Constrain width of the text overlay */
-    max-height: 80%; /* Cap height of the content overlay */
-    padding: 20px;
-    margin-top: 0; /* Remove top margin */
-    text-align: left; /* Text aligns left in overlay */
-    background: rgba(0, 0, 0, 0.75); /* Slightly more opaque overlay */
-    border-radius: 4px; /* Subtle rounded corners */
+    max-width: 100%; 
+    height: 90%;
+    width: auto;
   }
 
   /* Font Sizes for Tablets */
@@ -281,9 +271,10 @@ img {
 /* Laptops and Desktops (min-width: 1024px) */
 @media (min-width: 1024px) {
   .carousel-content {
-    height: 80vh; /* Even taller for desktops */
+    height: 100%; /* Even taller for desktops */
     max-height: 750px; /* Cap for very large screens */
     max-width: 1100px; /* Widen the overall carousel content */
+    object-fit: contain;
   }
 
   .slide-media {
@@ -291,7 +282,7 @@ img {
   }
 
   .slide-content {
-    max-width: 35%; /* Adjust max-width for overlay */
+    // max-width: 35%; /* Adjust max-width for overlay */
     padding: 25px;
   }
 
