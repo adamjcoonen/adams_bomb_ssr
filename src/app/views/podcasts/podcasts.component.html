@@ -1,16 +1,30 @@
 <div class="podcast-view-container">
-    <h1 class="header">Podcast Presentation</h1>
+    <h1 class="header">Laughing Historically</h1>
     
-    <mat-accordion>
-        <mat-expansion-panel *ngFor="let episode of episodes">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    {{ episode.title }}
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>{{ episode.details }}</p>
-        </mat-expansion-panel>
-        
-    </mat-accordion>
+    <mat-card *ngFor="let episode of episodes">
+        <div class="iframe-container"> 
+            <iframe 
+                    [src]="getEpisodeAudio(episode)"
+                    width="100%"
+                    height="202px"
+                    title="Laughing Historically"
+                    frameBorder="0"
+                    allow="accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture"
+                    scrolling="no">
+                    <a
+                    [href]="episode.link">
+                    Laughing Historically
+                </a>
+            </iframe>
+        </div>
+                <!-- <p>
+                    Episode Description
+                </p> -->
+    </mat-card>
 </div>
 

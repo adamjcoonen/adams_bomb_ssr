@@ -44,13 +44,13 @@
     </div>
     <div class="carousel-item" *ngIf="slide.mediaLink.headshot && i === currentSlide" @carouselAnimation >
       <div class="slide-content">
-        <div class="slide-title">
+        <!-- <div class="slide-title">
           <h6>{{slide.title}}</h6>
-        </div>
-        <div class="carousel-caption">
+        </div> -->
+        <!-- <div class="carousel-caption">
           <h6>{{slide.mediaLink.firstName}} {{slide.mediaLink.lastName}}</h6>
           <p class="bio">{{slide.mediaLink.bio}}</p>
-        </div>
+        </div> -->
         <div class="slide-media">
           <img [src]="slide.mediaLink.headshot.url" alt="slide.title">
         </div>
